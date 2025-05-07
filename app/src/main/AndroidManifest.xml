@@ -71,24 +71,18 @@
         <activity
             android:name=".ParentDashboardActivity"
             android:exported="false" />
-        <activity
-            android:name=".UpdateProfileActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ChangePasswordActivity"
             android:exported="false" />
         <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
-        <activity
-            android:name=".LandingActivity"
-            android:exported="false" />
+
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
-        <activity
-            android:name=".DeveloperActivity"
-            android:exported="false" />
+
         <activity
             android:name=".LogoutActivity"
             android:exported="false" />
