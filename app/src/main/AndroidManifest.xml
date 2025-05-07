@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HomeQuest"
+        tools:targetApi="31">
+        <activity
+            android:name=".FullMapActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAT7-RG_vSwz6ath3RMTSbZ6ZJXIMMTk7E" />
+
+        <activity
+            android:name=".AddFamilyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RoleChildrenActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddRewardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FamilyListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClaimingRewardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClaimRewardListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SubmitTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ToDoTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChildDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaskListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RewardListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AssignTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChildrenListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ParentDashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LandingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DeveloperActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LogoutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F4FF"> <!-- Background Color -->
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="#B8C3FF">
+
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/img_2"
+                android:scaleType="centerInside"
+                android:background="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textColor="#333333"
+                android:layout_gravity="center_vertical"
+                android:textSize="24sp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <!-- Account Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account Settings"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tv_changepass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Password"
+            android:textColor="#3B4DB2"
+            android:textStyle="bold"
+            android:clickable="false"
+            android:focusable="true"
+            android:textSize="15sp"
+            android:padding="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_changeemail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change Email"
+            android:textColor="#3B4DB2"
+            android:clickable="false"
+            android:textStyle="bold"
+            android:focusable="true"
+            android:textSize="15sp"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="About"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="8dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="8dp"
+            android:layout_height="wrap_content"
+            android:text="App Version: 1.0.0" />
+
+        <TextView
+            android:id="@+id/tv_developers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="About the Developers"
+            android:textColor="#3B4DB2"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:padding="8dp"/>
+
+        <TextView
+            android:id="@+id/tac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="8dp"
+            android:text="Terms and Conditions"
+            android:textColor="#3B4DB2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/privacypolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:textColor="#3B4DB2"
+            android:clickable="true"
+            android:focusable="true"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:padding="8dp"/>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
