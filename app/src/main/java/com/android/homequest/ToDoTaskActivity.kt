@@ -44,11 +44,13 @@ class ToDoTaskActivity : Activity() {
                                     it.assignToEmail.trim().equals(ChildEmail?.trim(), ignoreCase = true)
                         }
 
-                        if(targetList != null)
+                        val pendingTasks = targetList.filter { it.status.equals("Pending", ignoreCase = true) }
+
+                        if(pendingTasks.isNotEmpty())
                         {
                             taskAdapter = ToDoListAdapter(
                                 this@ToDoTaskActivity,
-                                targetList,
+                                pendingTasks,
                                 onClick = {task ->
                                     val taskId = task.id
                                     val taskPoints = task.taskpoints
