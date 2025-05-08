@@ -4,6 +4,7 @@ import com.android.homequest.model.LoginRequest
 import com.android.homequest.model.LoginResponse
 import com.android.homequest.model.Relationship
 import com.android.homequest.model.Reward
+import com.android.homequest.model.StatusUpdate
 import com.android.homequest.model.TaskAssignment
 import com.android.homequest.model.User
 import retrofit2.Call
@@ -32,6 +33,9 @@ interface ApiService {
 
     @POST("tasks")
     fun assignTask(@Body taskAssignment: TaskAssignment): Call<TaskAssignment>
+
+    @PATCH("/tasks/{id}/status")
+    fun updateTaskStatus(@Path("id") taskId: String, @Body statusUpdate: StatusUpdate): Call<TaskAssignment>
 
     @GET("rewards")
     fun getRewards(): Call<List<Reward>>

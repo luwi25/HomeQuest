@@ -26,14 +26,13 @@ class FamilyListAdapter(
             .inflate(R.layout.custom_children_list, parent, false)
 
         val name = view.findViewById<TextView>(R.id.tv_name)
-        val image = view.findViewById<ImageView>(R.id.iv_img)
-        val ppimg = view.findViewById<ImageView>(R.id.iv_ppimg)
+
 
         val family = familylist[position]
 
-        ppimg.setImageResource(family.ppimg)
+
         name.setText(family.name)
-        image.setImageResource(family.Img)
+
 
         return view
     }

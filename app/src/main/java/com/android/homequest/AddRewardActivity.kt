@@ -40,7 +40,8 @@ class AddRewardActivity : Activity() {
 
             val rewardS = Reward(
                 rewardDescription,
-                taskpoints
+                taskpoints,
+                status = "Pending"
             )
 
             RetrofitClient.instance.createReward(rewardS).enqueue(object : Callback<Reward> {

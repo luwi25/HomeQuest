@@ -82,7 +82,7 @@ class FamilyListActivity : Activity() {
 
                                                 },
                                                 onLongCLick = {children ->
-                                                    Toast.makeText(this@FamilyListActivity, "${children.parentFirstname}", Toast.LENGTH_SHORT).show()
+                                                    Toast.makeText(this@FamilyListActivity, "${children.childFirstname}", Toast.LENGTH_SHORT).show()
 
                                                 })
                                             listView.adapter = null

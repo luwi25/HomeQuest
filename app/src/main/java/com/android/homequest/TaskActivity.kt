@@ -15,6 +15,7 @@ import android.widget.Toast
 import com.android.homequest.RC.RetrofitClient
 
 import com.android.homequest.model.TaskAssignment
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -100,6 +101,7 @@ class TaskActivity : Activity() {
                 taskpoints = taskpoints,
                 assignDate = atayDate,
                 status = "Pending"
+
             )
 
 // POST request to assign task

@@ -3,6 +3,7 @@ package com.android.homequest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 
@@ -23,6 +24,11 @@ class ClaimingRewardActivity : Activity() {
             startActivity(
                 Intent(this, ClaimRewardListActivity::class.java)
             )
+        }
+
+        val button_claim = findViewById<Button>(R.id.button_claim)
+        button_claim.setOnClickListener {
+
         }
 
 

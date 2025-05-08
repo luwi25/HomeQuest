@@ -3,6 +3,7 @@ package com.android.homequest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageButton
@@ -11,6 +12,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.android.homequest.RC.RetrofitClient
+import com.android.homequest.model.StatusUpdate
+import com.android.homequest.model.TaskAssignment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SubmitTaskActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +31,30 @@ class SubmitTaskActivity : Activity() {
             if(chk.isChecked)
             {
                 Toast.makeText(this, "Task Finished!", Toast.LENGTH_SHORT).show()
+                val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                val taskId = sharedPreferences.getString("TaskID", "Default Firstname")
+
+
+                // Prepare the request body
+                val statusUpdate = StatusUpdate(status = "Completed")
+
+                // Call the API to update the status
+                RetrofitClient.instance.updateTaskStatus(taskId.toString(), statusUpdate).enqueue(object : Callback<TaskAssignment> {
+                    override fun onResponse(call: Call<TaskAssignment>, response: Response<TaskAssignment>) {
+                        if (response.isSuccessful) {
+                            Log.d("API", "Task Status Updated: ${response.body()}")
+                            Toast.makeText(this@SubmitTaskActivity, "Task status updated successfully", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
+                            Toast.makeText(this@SubmitTaskActivity, "Failed to update task status", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<TaskAssignment>, t: Throwable) {
+                        Log.e("API", "Error: ${t.message}")
+                        Toast.makeText(this@SubmitTaskActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
             }
         }
 

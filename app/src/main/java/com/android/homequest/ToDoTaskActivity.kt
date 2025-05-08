@@ -50,7 +50,12 @@ class ToDoTaskActivity : Activity() {
                                 this@ToDoTaskActivity,
                                 targetList,
                                 onClick = {task ->
-
+                                    val taskId = task.id
+                                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+                                    val editor = sharedPreferences.edit()
+                                    editor.putString("TaskID", taskId)
+                                    editor.commit()
+                                    Toast.makeText(this@ToDoTaskActivity, "${task.id}", Toast.LENGTH_SHORT).show()
                                     startTask()
 
                                 },
