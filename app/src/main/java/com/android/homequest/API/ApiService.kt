@@ -43,6 +43,9 @@ interface ApiService {
     @POST("rewards")
     fun createReward(@Body reward: Reward): Call<Reward>
 
+    @PATCH("/rewards/{id}/status")
+    fun updateRewardStatus(@Path("id") rewardId: String, @Body statusUpdate: StatusUpdate): Call<Reward>
+
     @GET("relationships")
     fun getRelationships(): Call<List<Relationship>>
 

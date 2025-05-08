@@ -11,6 +11,7 @@ import android.widget.Toast
 import com.android.homequest.RC.RetrofitClient
 import com.android.homequest.model.Reward
 import com.android.homequest.model.TaskAssignment
+import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,8 +40,8 @@ class AddRewardActivity : Activity() {
             val taskpoints = taskpointsStr.toIntOrNull() ?: 0
 
             val rewardS = Reward(
-                rewardDescription,
-                taskpoints,
+                description = rewardDescription,
+                points = taskpoints,
                 status = "Pending"
             )
 

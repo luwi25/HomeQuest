@@ -39,7 +39,8 @@ class ClaimRewardListActivity : Activity() {
                         this@ClaimRewardListActivity,
                         rewardList,
                         onClick = {reward ->
-
+                            val rewardId = reward.id
+                            editor.putString("rewardID", rewardId)
                             editor.putString("rewardName", reward.description)
                             editor.commit()
 
