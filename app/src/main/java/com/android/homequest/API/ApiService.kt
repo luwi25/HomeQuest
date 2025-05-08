@@ -31,6 +31,10 @@ interface ApiService {
     @GET("tasks")
     fun getTaskAssignments(): Call<List<TaskAssignment>>
 
+    @GET("/tasks/today")
+    fun getTodayTasks(): Call<List<TaskAssignment>>
+
+
     @POST("tasks")
     fun assignTask(@Body taskAssignment: TaskAssignment): Call<TaskAssignment>
 

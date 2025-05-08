@@ -32,7 +32,7 @@ class ToDoTaskActivity : Activity() {
         var ChildEmail = sharedPreferences.getString("childEmail", "default@email.com")
         var ChildFirstname = sharedPreferences.getString("childFirstname", "Default Firstname")
 
-        RetrofitClient.instance.getTaskAssignments()
+        RetrofitClient.instance.getTodayTasks()
             .enqueue(object : Callback<List<TaskAssignment>> {
                 override fun onResponse(call: Call<List<TaskAssignment>>, response: Response<List<TaskAssignment>>) {
                     if (response.isSuccessful) {

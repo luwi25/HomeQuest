@@ -30,7 +30,7 @@ class TaskListActivity : Activity() {
         val listView = findViewById<ListView>(R.id.listview)
 
         // Fetch tasks from backend
-        RetrofitClient.instance.getTaskAssignments().enqueue(object : Callback<List<TaskAssignment>> {
+        RetrofitClient.instance.getTodayTasks().enqueue(object : Callback<List<TaskAssignment>> {
             override fun onResponse(call: Call<List<TaskAssignment>>, response: Response<List<TaskAssignment>>) {
                 if (response.isSuccessful) {
                     // Get the list of tasks
