@@ -3,17 +3,36 @@ package com.android.homequest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.PopupMenu
+import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.android.homequest.Adapter.TaskAssignmentAdapter
+import java.text.SimpleDateFormat
+import java.util.*
+import com.android.homequest.RC.RetrofitClient
+import com.android.homequest.model.TaskAssignment
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ChildDashboardActivity : Activity() {
+    private lateinit var task1_date: TextView
+    private lateinit var task1_name: TextView
+    private lateinit var task2_date: TextView
+    private lateinit var task2_name: TextView
+    private lateinit var task3_date: TextView
+    private lateinit var task3_name: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_child_dashboard)
+
+        displayUpcomingTask()
 
         val cv_todotask = findViewById<CardView>(R.id.cv_todotask)
         cv_todotask.setOnClickListener {
@@ -84,5 +103,67 @@ class ChildDashboardActivity : Activity() {
         }
 
 
+
+    }
+
+    fun formatAssignDate(assignDate: String): String {
+        return try {
+            val inputFormat = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
+            val date = inputFormat.parse(assignDate)
+            outputFormat.format(date!!)
+        } catch (e: Exception) {
+            assignDate // fallback to original if parsing fails
+        }
+    }
+
+    fun displayUpcomingTask()
+    {
+        task1_date = findViewById(R.id.task1_date)
+        task1_name = findViewById(R.id.task1_name)
+        task2_date = findViewById(R.id.task2_date)
+        task2_name = findViewById(R.id.task2_name)
+        task3_date = findViewById(R.id.task3_date)
+        task3_name = findViewById(R.id.task3_name)
+
+        RetrofitClient.instance.getUpcomingTasks().enqueue(object : Callback<List<TaskAssignment>> {
+            override fun onResponse(call: Call<List<TaskAssignment>>, response: Response<List<TaskAssignment>>) {
+                if (response.isSuccessful) {
+                    // Get the list of tasks
+                    val taskList = response.body() ?: emptyList()
+
+
+                    // Check if the list is not empty
+                    if (taskList.isNotEmpty()) {
+                        if (taskList.size > 0) {
+                            val firstTask = taskList[0]
+                            task1_name.text = firstTask.taskname
+                            val formattedDate = formatAssignDate(firstTask.assignDate)
+                            task1_date.text = formattedDate
+                        }
+                        if (taskList.size > 1) {
+                            val secondTask = taskList[1]
+                            task2_name.text = secondTask.taskname
+                            task2_date.text = secondTask.assignDate
+                        }
+                        if (taskList.size > 2) {
+                            val thirdTask = taskList[2]
+                            task3_name.text = thirdTask.taskname
+                            task3_date.text = thirdTask.assignDate
+                        }
+
+                    } else {
+                        task1_name.text = "No Upcoming Task Yet"
+                    }
+
+                } else {
+                    Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<TaskAssignment>>, t: Throwable) {
+                Log.e("API", "Error: ${t.message}")
+            }
+        })
     }
 }

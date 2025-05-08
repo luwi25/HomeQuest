@@ -25,10 +25,12 @@ class TaskAssignmentAdapter(
             .inflate(R.layout.custom_task_list, parent, false)
 
         val desc = view.findViewById<TextView>(R.id.tv_desc)
+        val assignDateText = view.findViewById<TextView>(R.id.tv_assigndate)
 
         val task = taskAssignmentlist[position]
 
         desc.setText(task.taskname)
+        assignDateText.setText("Assigned on: ${task.assignDate}")
 
         return view
     }
