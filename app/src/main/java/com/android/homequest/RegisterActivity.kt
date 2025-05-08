@@ -84,11 +84,11 @@ class RegisterActivity : Activity() {
 
             // Create a user
             val user = User(
-                lastname,
-                firstname,
-                role,
-                email,
-                password
+                lastname = lastname,
+                firstname = firstname,
+                role = role,
+                email = email,
+                password = password
             )
 
             // POST request

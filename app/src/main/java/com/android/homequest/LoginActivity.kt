@@ -82,6 +82,8 @@ class LoginActivity : Activity() {
                         }
                         else if(role == "Child")
                         {
+                            editor.putInt("childPoints", user.points ?: 0)
+                            editor.putString("childID", user.id)
                             editor.putString("childFirstname", user.firstname)
                             editor.putString("childEmail", user.email)
                             editor.commit()

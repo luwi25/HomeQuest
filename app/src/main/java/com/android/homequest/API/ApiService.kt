@@ -2,6 +2,7 @@ package com.android.homequest.API
 
 import com.android.homequest.model.LoginRequest
 import com.android.homequest.model.LoginResponse
+import com.android.homequest.model.PointsUpdate
 import com.android.homequest.model.Relationship
 import com.android.homequest.model.Reward
 import com.android.homequest.model.StatusUpdate
@@ -27,6 +28,9 @@ interface ApiService {
 
     @POST("users")
     fun createUser(@Body user: User): Call<User>
+
+    @PATCH("/users/{id}/points")
+    fun updateChildPoints(@Path("id") userId: String, @Body pointsUpdate: PointsUpdate): Call<User>
 
     @GET("tasks")
     fun getTaskAssignments(): Call<List<TaskAssignment>>

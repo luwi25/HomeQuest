@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.homequest.RC.RetrofitClient
+import com.android.homequest.model.PointsUpdate
 import com.android.homequest.model.StatusUpdate
 import com.android.homequest.model.TaskAssignment
+import com.android.homequest.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,7 +34,10 @@ class SubmitTaskActivity : Activity() {
             {
                 Toast.makeText(this, "Task Finished!", Toast.LENGTH_SHORT).show()
                 val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-                val taskId = sharedPreferences.getString("TaskID", "Default Firstname")
+                val taskId = sharedPreferences.getString("TaskID", "Default Task ID")
+
+
+
 
 
                 // Prepare the request body
@@ -43,7 +48,7 @@ class SubmitTaskActivity : Activity() {
                     override fun onResponse(call: Call<TaskAssignment>, response: Response<TaskAssignment>) {
                         if (response.isSuccessful) {
                             Log.d("API", "Task Status Updated: ${response.body()}")
-                            Toast.makeText(this@SubmitTaskActivity, "Task status updated successfully", Toast.LENGTH_SHORT).show()
+
                         } else {
                             Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
                             Toast.makeText(this@SubmitTaskActivity, "Failed to update task status", Toast.LENGTH_SHORT).show()
@@ -51,6 +56,28 @@ class SubmitTaskActivity : Activity() {
                     }
 
                     override fun onFailure(call: Call<TaskAssignment>, t: Throwable) {
+                        Log.e("API", "Error: ${t.message}")
+                        Toast.makeText(this@SubmitTaskActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
+                val childId = sharedPreferences.getString("childID", "Default Child ID")
+                val childpoints = sharedPreferences.getInt("childPoints", 0)
+                val taskpoints = sharedPreferences.getInt("TaskPoints", 0)
+
+                val pointsUpdate = PointsUpdate(points = taskpoints + childpoints)
+
+                RetrofitClient.instance.updateChildPoints(childId.toString(), pointsUpdate).enqueue(object : Callback<User> {
+                    override fun onResponse(call: Call<User>, response: Response<User>) {
+                        if (response.isSuccessful) {
+                            Log.d("API", "Points Updated: ${response.body()}")
+                            Toast.makeText(this@SubmitTaskActivity, "Points updated successfully", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
+                            Toast.makeText(this@SubmitTaskActivity, "Failed to update points", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<User>, t: Throwable) {
                         Log.e("API", "Error: ${t.message}")
                         Toast.makeText(this@SubmitTaskActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
