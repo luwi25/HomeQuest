@@ -144,12 +144,14 @@ class ChildDashboardActivity : Activity() {
                         if (taskList.size > 1) {
                             val secondTask = taskList[1]
                             task2_name.text = secondTask.taskname
-                            task2_date.text = secondTask.assignDate
+                            val formattedDate2 = formatAssignDate(secondTask.assignDate)
+                            task2_date.text = formattedDate2
                         }
                         if (taskList.size > 2) {
                             val thirdTask = taskList[2]
                             task3_name.text = thirdTask.taskname
-                            task3_date.text = thirdTask.assignDate
+                            val formattedDate3 = formatAssignDate(thirdTask.assignDate)
+                            task3_date.text = formattedDate3
                         }
 
                     } else {

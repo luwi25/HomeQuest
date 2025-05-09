@@ -5,8 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import com.android.homequest.Adapter.ChildrenListAdapter
+import android.graphics.Color
 import com.android.homequest.Adapter.TaskListAdapter
 import com.android.homequest.Adapter.ToDoListAdapter
 import com.android.homequest.RC.RetrofitClient
@@ -16,6 +18,8 @@ import com.android.homequest.model.TaskAssignment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 
 class ToDoTaskActivity : Activity() {
@@ -32,6 +36,7 @@ class ToDoTaskActivity : Activity() {
         var ChildEmail = sharedPreferences.getString("childEmail", "default@email.com")
         var ChildFirstname = sharedPreferences.getString("childFirstname", "Default Firstname")
 
+
         RetrofitClient.instance.getTodayTasks()
             .enqueue(object : Callback<List<TaskAssignment>> {
                 override fun onResponse(call: Call<List<TaskAssignment>>, response: Response<List<TaskAssignment>>) {
@@ -46,11 +51,12 @@ class ToDoTaskActivity : Activity() {
 
                         val pendingTasks = targetList.filter { it.status.equals("Pending", ignoreCase = true) }
 
-                        if(pendingTasks.isNotEmpty())
+
+                        if(targetList.isNotEmpty())
                         {
                             taskAdapter = ToDoListAdapter(
                                 this@ToDoTaskActivity,
-                                pendingTasks,
+                                targetList,
                                 onClick = {task ->
                                     val taskId = task.id
                                     val taskPoints = task.taskpoints
@@ -98,5 +104,15 @@ class ToDoTaskActivity : Activity() {
         startActivity(
             Intent(this, SubmitTaskActivity::class.java)
         )
+    }
+    fun formatAssignDate(assignDate: String): String {
+        return try {
+            val inputFormat = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
+            val outputFormat = SimpleDateFormat("MMMM d, yyyy", Locale.getDefault())
+            val date = inputFormat.parse(assignDate)
+            outputFormat.format(date!!)
+        } catch (e: Exception) {
+            assignDate // fallback to original if parsing fails
+        }
     }
 }
