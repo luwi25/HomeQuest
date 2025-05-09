@@ -38,8 +38,11 @@ interface ApiService {
     @GET("/tasks/today")
     fun getTodayTasks(): Call<List<TaskAssignment>>
 
-    @GET("/tasks/upcoming")
-    fun getUpcomingTasks(): Call<List<TaskAssignment>>
+    @GET("tasks/upcoming")
+    fun getUpcomingTasks(
+        @Query("assignTo") assignTo: String,
+        @Query("assignToEmail") assignToEmail: String
+    ): Call<List<TaskAssignment>>
 
 
 

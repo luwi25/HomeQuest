@@ -42,6 +42,7 @@ class ClaimRewardListActivity : Activity() {
                             val rewardId = reward.id
                             editor.putString("rewardID", rewardId)
                             editor.putString("rewardName", reward.description)
+                            editor.putInt("rewardPoints", reward.points)
                             editor.commit()
 
                             startClaim()

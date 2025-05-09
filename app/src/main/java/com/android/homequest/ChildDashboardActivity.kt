@@ -126,29 +126,40 @@ class ChildDashboardActivity : Activity() {
         task3_date = findViewById(R.id.task3_date)
         task3_name = findViewById(R.id.task3_name)
 
-        RetrofitClient.instance.getUpcomingTasks().enqueue(object : Callback<List<TaskAssignment>> {
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        var ChildEmail = sharedPreferences.getString("childEmail", "default@email.com")
+        var ChildFirstname = sharedPreferences.getString("childFirstname", "Default Firstname")
+
+
+        RetrofitClient.instance.getUpcomingTasks(ChildFirstname.toString(), ChildEmail.toString()).enqueue(object : Callback<List<TaskAssignment>> {
             override fun onResponse(call: Call<List<TaskAssignment>>, response: Response<List<TaskAssignment>>) {
                 if (response.isSuccessful) {
                     // Get the list of tasks
                     val taskList = response.body() ?: emptyList()
 
+                    val targetList = taskList.filter {
+                        it.assignTo.trim().equals(ChildFirstname?.trim(), ignoreCase = true) &&
+                                it.assignToEmail.trim().equals(ChildEmail?.trim(), ignoreCase = true)
+                    }
+
 
                     // Check if the list is not empty
-                    if (taskList.isNotEmpty()) {
-                        if (taskList.size > 0) {
-                            val firstTask = taskList[0]
+                    if (targetList.isNotEmpty()) {
+                        if (targetList.size > 0) {
+                            val firstTask = targetList[0]
                             task1_name.text = firstTask.taskname
                             val formattedDate = formatAssignDate(firstTask.assignDate)
                             task1_date.text = formattedDate
+
                         }
-                        if (taskList.size > 1) {
-                            val secondTask = taskList[1]
+                        if (targetList.size > 1) {
+                            val secondTask = targetList[1]
                             task2_name.text = secondTask.taskname
                             val formattedDate2 = formatAssignDate(secondTask.assignDate)
                             task2_date.text = formattedDate2
                         }
-                        if (taskList.size > 2) {
-                            val thirdTask = taskList[2]
+                        if (targetList.size > 2) {
+                            val thirdTask = targetList[2]
                             task3_name.text = thirdTask.taskname
                             val formattedDate3 = formatAssignDate(thirdTask.assignDate)
                             task3_date.text = formattedDate3

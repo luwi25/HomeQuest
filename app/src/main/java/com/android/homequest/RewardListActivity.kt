@@ -22,6 +22,11 @@ class RewardListActivity : Activity() {
         setContentView(R.layout.activity_reward_list)
 
         val listView = findViewById<ListView>(R.id.listview)
+        // Inflate the footer layout
+        val footerView = layoutInflater.inflate(R.layout.footer_layout, listView, false)
+
+// Add the footer before setting the adapter
+        listView.addFooterView(footerView)
 
         // Fetch tasks from backend
         RetrofitClient.instance.getRewards().enqueue(object :
@@ -31,9 +36,17 @@ class RewardListActivity : Activity() {
                     // Get the list of tasks
                     val rewardList = response.body() ?: emptyList()
 
-                    // Set up the adapter to display the task names
-                    val taskAdapter = RewardListAdapter(this@RewardListActivity, rewardList)
-                    listView.adapter = taskAdapter
+                    val targetList = rewardList.filter {
+                        it.status?.trim()?.equals("Pending", ignoreCase = true) == true
+                    }
+                    if(targetList.isNotEmpty())
+                    {
+                        // Set up the adapter to display the task names
+                        val taskAdapter = RewardListAdapter(this@RewardListActivity, targetList)
+                        listView.adapter = taskAdapter
+                    }
+
+
                 } else {
                     Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
                 }
@@ -51,7 +64,7 @@ class RewardListActivity : Activity() {
             )
         }
 
-        val button_addreward = findViewById<Button>(R.id.button_addreward)
+        val button_addreward = footerView.findViewById<Button>(R.id.button_addreward)
         button_addreward.setOnClickListener {
             startActivity(
                 Intent(this, AddRewardActivity::class.java)

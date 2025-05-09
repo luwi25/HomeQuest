@@ -37,6 +37,9 @@ class SubmitTaskActivity : Activity() {
                 val taskId = sharedPreferences.getString("TaskID", "Default Task ID")
 
 
+                val editor = sharedPreferences.edit()
+
+
 
 
 
@@ -64,6 +67,8 @@ class SubmitTaskActivity : Activity() {
                 val childpoints = sharedPreferences.getInt("childPoints", 0)
                 val taskpoints = sharedPreferences.getInt("TaskPoints", 0)
 
+                Log.d("before", "${childpoints}")
+
                 val pointsUpdate = PointsUpdate(points = taskpoints + childpoints)
 
                 RetrofitClient.instance.updateChildPoints(childId.toString(), pointsUpdate).enqueue(object : Callback<User> {
@@ -82,6 +87,15 @@ class SubmitTaskActivity : Activity() {
                         Toast.makeText(this@SubmitTaskActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                     }
                 })
+
+                Log.d("after", "${pointsUpdate.points}")
+
+                editor.putInt("childPoints", pointsUpdate.points)
+                editor.commit()
+
+                val success = sharedPreferences.getInt("childPoints", 0)
+
+                Log.d("Success", "${success}")
             }
         }
 

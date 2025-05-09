@@ -58,19 +58,25 @@ class ToDoTaskActivity : Activity() {
                                 this@ToDoTaskActivity,
                                 targetList,
                                 onClick = {task ->
-                                    val taskId = task.id
-                                    val taskPoints = task.taskpoints
-                                    val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-                                    val editor = sharedPreferences.edit()
-                                    editor.putString("TaskID", taskId)
-                                    editor.putInt("TaskPoints", taskPoints)
-                                    editor.commit()
-                                    Toast.makeText(this@ToDoTaskActivity, "${task.id}", Toast.LENGTH_SHORT).show()
-                                    startTask()
+                                    if(task.status == "Pending") {
+                                        val taskId = task.id
+                                        val taskPoints = task.taskpoints
+                                        val sharedPreferences =
+                                            getSharedPreferences("UserSession", MODE_PRIVATE)
+                                        val editor = sharedPreferences.edit()
+                                        editor.putString("TaskID", taskId)
+                                        editor.putInt("TaskPoints", taskPoints)
+                                        editor.commit()
+                                        startTask()
+                                    }
+                                    else{
+                                        Toast.makeText(this@ToDoTaskActivity, "${task.status} task for today", Toast.LENGTH_SHORT).show()
+                                    }
 
                                 },
                                 onLongCLick = {task ->
-                                    Toast.makeText(this@ToDoTaskActivity, "${task.taskname}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@ToDoTaskActivity, "${task.status} task for today", Toast.LENGTH_SHORT).show()
+
 
                                 })
                             listView.adapter = null
