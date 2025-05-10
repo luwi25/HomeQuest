@@ -55,6 +55,9 @@ interface ApiService {
     @PATCH("/tasks/{id}/status")
     fun updateTaskStatus(@Path("id") taskId: String, @Body statusUpdate: StatusUpdate): Call<TaskAssignment>
 
+    @DELETE("tasks/{id}")
+    fun deleteTaskById(@Path("id") taskId: String): Call<TaskAssignment>
+
     @DELETE("tasks")
     fun deleteTaskByAssignee(
         @Query("assignTo") assignTo: String,

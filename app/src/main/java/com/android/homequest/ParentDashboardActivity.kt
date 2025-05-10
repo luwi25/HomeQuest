@@ -36,7 +36,9 @@ class ParentDashboardActivity : FragmentActivity() {
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.option_edit -> {
-                        Toast.makeText(this, "Edit clicked", Toast.LENGTH_SHORT).show()
+                        startActivity(
+                            Intent(this, DeleteTaskActivity::class.java)
+                        )
                         true
                     }
                     R.id.option_delete -> {

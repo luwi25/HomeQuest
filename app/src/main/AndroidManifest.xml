@@ -19,6 +19,9 @@
         android:theme="@style/Theme.HomeQuest"
         tools:targetApi="31">
         <activity
+            android:name=".DeleteTaskActivity"
+            android:exported="false" />
+        <activity
             android:name=".DeleteChildActivity"
             android:exported="false" />
         <activity
