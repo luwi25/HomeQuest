@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.android.homequest.Adapter.ChildrenListAdapter
+import com.android.homequest.Adapter.DeleteChildAdapter
 import com.android.homequest.RC.RetrofitClient
 import com.android.homequest.model.Relationship
 import com.android.homequest.model.TaskAssignment
@@ -26,8 +27,8 @@ import retrofit2.Response
 class DeleteChildActivity : Activity() {
 
     private lateinit var listView: ListView
-    private lateinit var childAdapter: ChildrenListAdapter
-    private var childList: List<Relationship> = emptyList()
+    private lateinit var childAdapter: DeleteChildAdapter
+    private var childList: MutableList<Relationship> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_delete_child)
@@ -53,24 +54,25 @@ class DeleteChildActivity : Activity() {
                 override fun onResponse(call: Call<List<Relationship>>, response: Response<List<Relationship>>) {
                     if (response.isSuccessful) {
                         // Fetch the user data from the response
-                        childList = response.body() ?: emptyList()
+                        childList = response.body()?.toMutableList() ?: mutableListOf()
 
                         // Initialize the adapter with the full list of users
-                        childAdapter = ChildrenListAdapter(
+                        childAdapter = DeleteChildAdapter(
                             this@DeleteChildActivity,
                             childList,
                             onClick = {children ->
 
-                                editor.putString("relationshipID", children.id.toString())
-                                editor.putString("childFirstname", children.childFirstname)
-                                editor.putString("childEmail", children.childEmail)
-                                editor.commit()
-                                overlayLayout.visibility = View.VISIBLE
+
+
 
 
                             },
                             onLongCLick = {children ->
                                 Toast.makeText(this@DeleteChildActivity, "${children.parentFirstname}", Toast.LENGTH_SHORT).show()
+
+                            },
+                            onDeleteButtonClick = {children ->
+                                overlayLayout.visibility = View.VISIBLE
 
                             })
                         listView.adapter = childAdapter
@@ -95,11 +97,13 @@ class DeleteChildActivity : Activity() {
         }
 
         btnConfirmDelete.setOnClickListener {
-            val RelationshipId = sharedPreferences.getString("relationshipID", "Default Email")
-            val childFirstname = sharedPreferences.getString("childFirstname", "Default")
-            val childEmail = sharedPreferences.getString("childEmail", "Default")
+            val sharedPref = getSharedPreferences("UserSession", MODE_PRIVATE)
 
-            RetrofitClient.instance.deleteRelationshipById(RelationshipId.toString())
+            val relationshipId = sharedPref.getString("relationshipID", null)
+            val childFirstname = sharedPref.getString("childFirstname", null)
+            val childEmail = sharedPref.getString("childEmail", null)
+
+            RetrofitClient.instance.deleteRelationshipById(relationshipId.toString())
                 .enqueue(object : Callback<Relationship> {
                     override fun onResponse(call: Call<Relationship>, response: Response<Relationship>) {
                         if (response.isSuccessful) {
