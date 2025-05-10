@@ -21,11 +21,11 @@
 
 
             <ImageView
-                android:id="@+id/iv_taskimg"
+                android:id="@+id/iv_rewardimg"
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_width="50dp"
-                android:src="@drawable/img_27"
+                android:src="@drawable/img_28"
                 android:layout_height="50dp" />
 
             <LinearLayout
@@ -33,41 +33,40 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Haha"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_points"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="1"
+                    android:textSize="15sp"
+                    android:textColor="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="Pending"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"/>
 
 
+            </LinearLayout>
 
 
-                    <TextView
-                        android:id="@+id/tv_desc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:textSize="20sp"
-                        android:text="asdasd"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/black"/>
-
-                    <TextView
-                        android:id="@+id/tv_assigndate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:textSize="14sp"
-                        android:textColor="@android:color/black"/>
-
-                    <TextView
-                        android:id="@+id/tv_taskstatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="5dp"
-                        android:textSize="14sp"
-                        android:text=""
-                        android:textColor="@android:color/black"/>
-
-                </LinearLayout>
 
             <Button
                 android:id="@+id/button_delete"
@@ -78,6 +77,7 @@
                 android:text="Delete"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"/>
+
 
 
         </LinearLayout>

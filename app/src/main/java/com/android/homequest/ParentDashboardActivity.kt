@@ -84,7 +84,7 @@ class ParentDashboardActivity : FragmentActivity() {
 
         ibutton_morereward.setOnClickListener {
             val popupMenu = PopupMenu(this, ibutton_morereward)
-            popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
+            popupMenu.menuInflater.inflate(R.menu.popupreward_menu, popupMenu.menu)
 
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
@@ -93,7 +93,9 @@ class ParentDashboardActivity : FragmentActivity() {
                         true
                     }
                     R.id.option_delete -> {
-                        Toast.makeText(this, "Delete clicked", Toast.LENGTH_SHORT).show()
+                        startActivity(
+                            Intent(this, DeleteRewardActivity::class.java)
+                        )
                         true
                     }
                     else -> false

@@ -73,6 +73,9 @@ interface ApiService {
     @PATCH("/rewards/{id}/status")
     fun updateRewardStatus(@Path("id") rewardId: String, @Body statusUpdate: StatusUpdate): Call<Reward>
 
+    @DELETE("rewards/{id}")
+    fun deleteRewardById(@Path("id") rewardId: String): Call<Reward>
+
     @GET("relationships")
     fun getRelationships(): Call<List<Relationship>>
 
