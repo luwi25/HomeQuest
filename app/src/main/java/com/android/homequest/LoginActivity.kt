@@ -78,6 +78,7 @@ class LoginActivity : Activity() {
                             editor.putString("parentFirstname", user.firstname)
                             editor.putString("parentEmail", user.email)
                             editor.commit()
+
                             startParent()
                         }
                         else if(role == "Child")

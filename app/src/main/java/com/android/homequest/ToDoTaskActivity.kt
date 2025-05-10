@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.android.homequest.Adapter.ChildrenListAdapter
 import android.graphics.Color
+import com.android.homequest.Adapter.TaskAssignmentAdapter
 import com.android.homequest.Adapter.TaskListAdapter
 import com.android.homequest.Adapter.ToDoListAdapter
 import com.android.homequest.RC.RetrofitClient
@@ -82,6 +83,29 @@ class ToDoTaskActivity : Activity() {
                             listView.adapter = null
                             listView.adapter = taskAdapter
 
+                        }
+                        else
+                        {
+                            val emptyTaskList = listOf(
+                                TaskAssignment(
+                                    assignTo = "empty",
+                                    assignToEmail = "empty",
+                                    taskname = "No Task for Today",
+                                    taskpoints = 0,
+                                    assignDate = "Parent forgot to task you today xd",
+                                    status = "Do it now"
+                                )
+                            )
+                            val emptyAdapter = ToDoListAdapter(
+                                this@ToDoTaskActivity,
+                                emptyTaskList,
+                                onClick = {task ->
+                                    Toast.makeText(this@ToDoTaskActivity, "No Task", Toast.LENGTH_SHORT).show()
+                                },
+                                onLongCLick = {task ->
+                                    Toast.makeText(this@ToDoTaskActivity, "No Task", Toast.LENGTH_SHORT).show()
+                                })
+                            listView.adapter = emptyAdapter
                         }
 
 

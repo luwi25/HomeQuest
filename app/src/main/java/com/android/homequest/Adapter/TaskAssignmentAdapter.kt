@@ -41,7 +41,7 @@ class TaskAssignmentAdapter(
             status.setTextColor(Color.RED)
             status.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC)
         }
-        else
+        else if(task.status == "Completed")
         {
             status.setText("Complete")
             status.setTextColor(Color.GREEN)

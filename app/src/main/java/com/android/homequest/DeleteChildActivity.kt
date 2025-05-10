@@ -1,0 +1,140 @@
+package com.android.homequest
+
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ListView
+import android.widget.RelativeLayout
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.android.homequest.Adapter.ChildrenListAdapter
+import com.android.homequest.RC.RetrofitClient
+import com.android.homequest.model.Relationship
+import com.android.homequest.model.TaskAssignment
+import com.android.homequest.model.User
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class DeleteChildActivity : Activity() {
+
+    private lateinit var listView: ListView
+    private lateinit var childAdapter: ChildrenListAdapter
+    private var childList: List<Relationship> = emptyList()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_delete_child)
+
+        val overlayLayout = findViewById<RelativeLayout>(R.id.overlay_layout)
+        val btnConfirmDelete = findViewById<Button>(R.id.btn_confirm_delete)
+        val btnCancelDelete = findViewById<Button>(R.id.btn_cancel_delete)
+
+        listView = findViewById(R.id.listview)
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val ParentEmail = sharedPreferences.getString("parentEmail", "default@email.com")
+        val ParentFirstname = sharedPreferences.getString("parentFirstname", "Default Firstname")
+        val childEmail = sharedPreferences.getString("childEmail", "Default Email")
+
+
+        val editor = sharedPreferences.edit()
+
+        RetrofitClient.instance.searchRelationship(parentFirstname = ParentFirstname,
+            parentEmail = ParentEmail,
+            childFirstname = null,
+            childEmail = null)
+            .enqueue(object : Callback<List<Relationship>> {
+                override fun onResponse(call: Call<List<Relationship>>, response: Response<List<Relationship>>) {
+                    if (response.isSuccessful) {
+                        // Fetch the user data from the response
+                        childList = response.body() ?: emptyList()
+
+                        // Initialize the adapter with the full list of users
+                        childAdapter = ChildrenListAdapter(
+                            this@DeleteChildActivity,
+                            childList,
+                            onClick = {children ->
+
+                                editor.putString("relationshipID", children.id.toString())
+                                editor.putString("childFirstname", children.childFirstname)
+                                editor.putString("childEmail", children.childEmail)
+                                editor.commit()
+                                overlayLayout.visibility = View.VISIBLE
+
+
+                            },
+                            onLongCLick = {children ->
+                                Toast.makeText(this@DeleteChildActivity, "${children.parentFirstname}", Toast.LENGTH_SHORT).show()
+
+                            })
+                        listView.adapter = childAdapter
+
+                    } else {
+                        // Log error if response is not successful
+                        Toast.makeText(this@DeleteChildActivity, "Error: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<List<Relationship>>, t: Throwable) {
+                    // Handle failure case
+                    Toast.makeText(this@DeleteChildActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+
+        val buttonback = findViewById<ImageButton>(R.id.buttonback)
+        buttonback.setOnClickListener {
+            startActivity(
+                Intent(this, ParentDashboardActivity::class.java)
+            )
+        }
+
+        btnConfirmDelete.setOnClickListener {
+            val RelationshipId = sharedPreferences.getString("relationshipID", "Default Email")
+            val childFirstname = sharedPreferences.getString("childFirstname", "Default")
+            val childEmail = sharedPreferences.getString("childEmail", "Default")
+
+            RetrofitClient.instance.deleteRelationshipById(RelationshipId.toString())
+                .enqueue(object : Callback<Relationship> {
+                    override fun onResponse(call: Call<Relationship>, response: Response<Relationship>) {
+                        if (response.isSuccessful) {
+                            Log.d("DELETE", "Relationship deleted successfully")
+
+                            RetrofitClient.instance.deleteTaskByAssignee(childFirstname.toString(), childEmail.toString())
+                                .enqueue(object : Callback<TaskAssignment> {
+                                    override fun onResponse(call: Call<TaskAssignment>, response: Response<TaskAssignment>) {
+                                        if (response.isSuccessful) {
+                                            Log.d("DELETE", "${childFirstname.toString()} Task deleted successfully")
+                                        } else {
+                                            Log.e("DELETE", "Error: ${response.code()}")
+                                        }
+                                    }
+
+                                    override fun onFailure(call: Call<TaskAssignment>, t: Throwable) {
+                                        Log.e("DELETE", "Failure: ${t.message}")
+                                    }
+                                })
+                        } else {
+                            Log.e("DELETE", "Error: ${response.code()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Relationship>, t: Throwable) {
+                        Log.e("DELETE", "Failure: ${t.message}")
+                    }
+                })
+
+            overlayLayout.visibility = View.GONE
+        }
+        btnCancelDelete.setOnClickListener {
+            overlayLayout.visibility = View.GONE
+        }
+
+
+    }
+}

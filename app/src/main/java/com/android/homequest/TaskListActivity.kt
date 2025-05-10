@@ -38,7 +38,26 @@ class TaskListActivity : Activity() {
 
                     // Set up the adapter to display the task names
                     val taskAdapter = TaskAssignmentAdapter(this@TaskListActivity, taskList)
-                    listView.adapter = taskAdapter
+                    if(taskList.isNotEmpty())
+                    {
+                        listView.adapter = taskAdapter
+                    }
+                    else
+                    {
+                        val emptyTaskList = listOf(
+                            TaskAssignment(
+                                assignTo = "empty",
+                                assignToEmail = "empty",
+                                taskname = "No Task for Today",
+                                taskpoints = 0,
+                                assignDate = "Assign a task now",
+                                status = "Do it now"
+                            )
+                        )
+                        val emptyAdapter = TaskAssignmentAdapter(this@TaskListActivity, emptyTaskList)
+                        listView.adapter = null
+                        listView.adapter = emptyAdapter
+                    }
                 } else {
                     Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
                 }

@@ -17,6 +17,8 @@
             android:layout_height="30dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/img_2"
             android:scaleType="centerInside"
             android:background="@null" />

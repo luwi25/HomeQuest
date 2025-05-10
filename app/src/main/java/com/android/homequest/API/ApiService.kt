@@ -32,6 +32,9 @@ interface ApiService {
     @PATCH("/users/{id}/points")
     fun updateChildPoints(@Path("id") userId: String, @Body pointsUpdate: PointsUpdate): Call<User>
 
+    @DELETE("users/{id}")
+    fun deleteUser(@Path("id") userId: String): Call<User>
+
     @GET("tasks")
     fun getTaskAssignments(): Call<List<TaskAssignment>>
 
@@ -52,6 +55,12 @@ interface ApiService {
     @PATCH("/tasks/{id}/status")
     fun updateTaskStatus(@Path("id") taskId: String, @Body statusUpdate: StatusUpdate): Call<TaskAssignment>
 
+    @DELETE("tasks")
+    fun deleteTaskByAssignee(
+        @Query("assignTo") assignTo: String,
+        @Query("assignToEmail") assignToEmail: String
+    ): Call<TaskAssignment>
+
     @GET("rewards")
     fun getRewards(): Call<List<Reward>>
 
@@ -66,6 +75,9 @@ interface ApiService {
 
     @POST("relationships")
     fun createRelationship(@Body relationship: Relationship): Call<Relationship>
+
+    @DELETE("relationships/{id}")
+    fun deleteRelationshipById(@Path("id") id: String): Call<Relationship>
 
     @GET("relationships/search")
     fun searchRelationship(

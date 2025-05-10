@@ -50,7 +50,7 @@ class ClaimingRewardActivity : Activity() {
             if(childPoints >= rewardPoints) {
 
                 // Prepare the request body
-                val statusUpdate = StatusUpdate(status = "Completed")
+                val statusUpdate = StatusUpdate(status = "Pending")
 
                 // Call the API to update the status
                 RetrofitClient.instance.updateRewardStatus(rewardID.toString(), statusUpdate)

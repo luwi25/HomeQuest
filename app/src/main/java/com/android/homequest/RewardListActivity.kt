@@ -39,10 +39,10 @@ class RewardListActivity : Activity() {
                     val targetList = rewardList.filter {
                         it.status?.trim()?.equals("Pending", ignoreCase = true) == true
                     }
-                    if(targetList.isNotEmpty())
+                    if(rewardList.isNotEmpty())
                     {
                         // Set up the adapter to display the task names
-                        val taskAdapter = RewardListAdapter(this@RewardListActivity, targetList)
+                        val taskAdapter = RewardListAdapter(this@RewardListActivity, rewardList)
                         listView.adapter = taskAdapter
                     }
 

@@ -4,5 +4,5 @@
         android:title="Add Member" />
     <item
         android:id="@+id/option_delete"
-        android:title="Delete" />
+        android:title="Remove Child" />
 </menu>

@@ -67,7 +67,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
                         android:textSize="14sp"
-                        android:text="Pending"
+                        android:text=""
                         android:textColor="@android:color/black"/>
 
                 </LinearLayout>

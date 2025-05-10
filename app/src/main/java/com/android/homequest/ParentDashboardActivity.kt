@@ -137,6 +137,9 @@ class ParentDashboardActivity : FragmentActivity() {
                         true
                     }
                     R.id.option_delete -> {
+                        startActivity(
+                            Intent(this, DeleteChildActivity::class.java)
+                        )
                         Toast.makeText(this, "Delete clicked", Toast.LENGTH_SHORT).show()
                         true
                     }
@@ -166,6 +169,7 @@ class ParentDashboardActivity : FragmentActivity() {
                 Intent(this, AssignTaskActivity::class.java)
             )
         }
+
 
         val ib_settings = findViewById<ImageButton>(R.id.ib_settings)
         ib_settings.setOnClickListener {

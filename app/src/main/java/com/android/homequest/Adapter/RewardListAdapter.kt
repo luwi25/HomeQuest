@@ -1,6 +1,7 @@
 package com.android.homequest.Adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,11 +27,24 @@ class RewardListAdapter(
 
         val desc = view.findViewById<TextView>(R.id.tv_desc)
         val points = view.findViewById<TextView>(R.id.tv_points)
+        val status = view.findViewById<TextView>(R.id.tv_status)
 
         val reward = rewardlist[position]
 
         desc.setText(reward.description)
-        points.setText(reward.points.toString())
+        points.setText("${reward.points ?: 0} points")
+        if(reward.status== "Pending")
+        {
+            status.setText("Pending")
+            status.setTextColor(Color.RED)
+            status.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC)
+        }
+        else
+        {
+            status.setText("Claimed")
+            status.setTextColor(Color.GREEN)
+            status.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC)
+        }
 
         return view
     }
