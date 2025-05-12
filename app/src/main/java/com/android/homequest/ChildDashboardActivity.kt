@@ -86,7 +86,9 @@ class ChildDashboardActivity : Activity() {
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.option_profile -> {
-                        Toast.makeText(this, "Edit clicked", Toast.LENGTH_SHORT).show()
+                        startActivity(
+                            Intent(this, ProfileActivity::class.java)
+                        )
                         true
                     }
                     R.id.option_logout -> {

@@ -183,15 +183,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/ibutton_moretask"
-                            android:layout_width="30dp"
-                            android:layout_height="20dp"
-                            android:layout_marginTop="85dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:layout_gravity="end"
-                            android:src="@drawable/img_25"/>
+
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -235,15 +227,7 @@
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
-                        <ImageView
-                            android:id="@+id/ibutton_morereward"
-                            android:layout_width="30dp"
-                            android:layout_height="20dp"
-                            android:layout_marginTop="85dp"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:layout_gravity="end"
-                            android:src="@drawable/img_25"/>
+
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>

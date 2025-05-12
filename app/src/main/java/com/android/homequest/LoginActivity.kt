@@ -101,7 +101,9 @@ class LoginActivity : Activity() {
                         if(role == "Parent")
                         {
                             editor.putString("parentFirstname", user.firstname)
+                            editor.putString("parentLastname", user.lastname)
                             editor.putString("parentEmail", user.email)
+                            editor.putString("role", "Parent")
                             editor.commit()
 
                             startParent()
@@ -112,6 +114,7 @@ class LoginActivity : Activity() {
                             editor.putString("childID", user.id)
                             editor.putString("childFirstname", user.firstname)
                             editor.putString("childEmail", user.email)
+                            editor.putString("role", "Child")
                             editor.commit()
                             Toast.makeText(this@LoginActivity, "${user.firstname}", Toast.LENGTH_SHORT).show()
                             startChild()

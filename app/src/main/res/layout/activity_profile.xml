@@ -1,281 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity"
-    android:background="#F2F4FF"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#F2F4FF">
+
+
 
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="150dp"
         android:orientation="horizontal"
-        android:background="#B8C3FF">
+        android:background="@drawable/headerprofile"
+        android:clipChildren="false"
+        android:clipToPadding="false">
 
         <ImageButton
-            android:id="@+id/button_back"
+            android:id="@+id/buttonback"
             android:layout_width="50dp"
             android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/img_2"
+            android:background="@null"
+            android:layout_marginTop="15dp"
             android:scaleType="centerInside"
-            android:background="@null" />
+            android:src="@drawable/img_2" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile"
-            android:textColor="#333333"
-            android:layout_gravity="center_vertical"
-            android:textSize="24sp"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img_4"
+            android:layout_marginVertical="12dp"/>
+
+        <ImageButton
+            android:id="@+id/button_edit"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/img_11" />
+
 
 
     </LinearLayout>
 
 
+
+    <!-- Curved Background Overlapping Below Header -->
     <LinearLayout
-        android:id="@+id/LinearLayout_profile"
+        android:id="@+id/curved_layout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@drawable/roundtext"
-        android:layout_marginTop="25dp"
-        android:layout_marginHorizontal="20dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/img_4"
-                android:layout_marginStart="20dp"/>
-
-            <Button
-                android:id="@+id/button_edit"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:text="Edit"
-                android:textSize="16sp"
-                android:clickable="false"
-                android:layout_marginTop="70dp"
-                android:layout_marginLeft="40dp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:background="@drawable/rounded_button" />
-
-
-        </LinearLayout>
-
+        android:background="@drawable/profilecurve"
+        android:layout_below="@id/header"
+        android:layout_marginTop="-24dp"
+        android:elevation="4dp"
+        android:paddingTop="32dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="24dp">
 
         <TextView
-
-            android:id="@+id/textview_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Joan Ocampo Hernaez"
-            android:layout_marginStart="20dp"
-            android:textColor="#000000"
-            android:textSize="20sp"
+            android:text="User Information"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="Email"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
-        <TextView
-            android:id="@+id/textview_email"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ingkaonnakajoy@gmail.com"
-            android:textColor="@android:color/holo_blue_dark"
-            android:layout_marginStart="20dp"
-            android:textSize="14sp"/>
+            android:hint="Username"
+            android:text="Sabrina"
+            android:enabled="false"
+            android:textColor="#808080"
+            android:background="#F0F0F0"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp" />
 
         <TextView
-            android:id="@+id/textview_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="I love Valorant"
-            android:textColor="#000000"
-            android:layout_marginStart="20dp"
-            android:textSize="14sp"/>
+            android:text="First Name"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/firstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:text="Sabrina"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp"
+            android:enabled="false"
+            android:textColor="#808080"
+            android:background="#F0F0F0"/>
 
         <TextView
-            android:id="@+id/textview_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="University of Cebu"
-            android:textColor="#000000"
-            android:layout_marginStart="20dp"
-            android:textSize="14sp"/>
+            android:text="Last Name"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/lastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:text="Aryan"
+            android:enabled="false"
+            android:textColor="#808080"
+            android:background="#F0F0F0"
+            android:padding="10dp"
+            android:layout_marginBottom="12dp" />
+
+
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:background="@drawable/rounded_button"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="Cancel"
+            android:background="@drawable/cancelbutton"
+            android:textColor="#01637E"
+            android:layout_marginTop="10dp"/>
+
+
+
     </LinearLayout>
+
+
+
+
+
+    <!--    navigation-->
     <LinearLayout
-        android:id="@+id/LinearLayout_edit"
+        android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:orientation="vertical"
-        android:background="@drawable/profileround"
-        android:visibility="invisible"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="20dp">
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_nav_background"
+        android:elevation="8dp"
+        android:paddingHorizontal="16dp"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_margin="16dp"
+        android:gravity="center">
 
+        <!-- Home -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/img_3"
+                android:scaleType="fitCenter"
+                android:contentDescription="Home" />
 
             <TextView
-                android:id="@+id/textview_newname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Name: "
-                android:layout_marginHorizontal="2dp"
+                android:text="Home"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:visibility="invisible"
-                android:textSize="16sp"/>
-
-
-            <EditText
-                android:id="@+id/edittext_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
-                android:textColorHint="#80FFFFFF"
-                android:visibility="invisible"
-                android:textStyle="bold"
-                android:hint="Enter username"/>
-
-
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
+        <!-- Settings -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/settings"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/ib_settings"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/img_6"
+                android:scaleType="fitCenter"
+                android:contentDescription="Settings" />
 
             <TextView
-                android:id="@+id/textview_newemail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email: "
-                android:layout_marginHorizontal="2dp"
+                android:id="@+id/tv_settings"
+                android:text="Settings"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:visibility="invisible"
-                android:textSize="16sp"/>
-
-
-            <EditText
-                android:id="@+id/edittext_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
-                android:textColorHint="#80FFFFFF"
-                android:textStyle="bold"
-                android:visibility="invisible"
-                android:hint="Enter username"/>
-
-
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
+        <!-- Create Task -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/imagebutton_addtask"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/ib_ct"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@null"
+                android:src="@drawable/img_9"
+                android:scaleType="fitCenter"
+                android:contentDescription="Create Task" />
 
             <TextView
-                android:id="@+id/textview_newbio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bio: "
-                android:visibility="invisible"
-                android:layout_marginHorizontal="2dp"
+                android:id="@+id/tv_ct"
+                android:text="Create Task"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:textSize="16sp"/>
-
-
-            <EditText
-                android:id="@+id/edittext_bio"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
-                android:textColorHint="#80FFFFFF"
-                android:textStyle="bold"
-                android:visibility="invisible"
-                android:hint="hahahahahahahah"/>
-
-
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
+        <!-- Notification -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@null"
+                android:src="@drawable/img_8"
+                android:scaleType="fitCenter"
+                android:contentDescription="Notification" />
 
             <TextView
-                android:id="@+id/textview_newschool"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="School: "
-                android:layout_marginHorizontal="2dp"
+                android:text="Notification"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:visibility="invisible"
-                android:textSize="16sp"/>
-
-
-            <EditText
-                android:id="@+id/edittext_school"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="2dp"
-                android:textColorHint="#80FFFFFF"
-                android:textStyle="bold"
-                android:visibility="invisible"
-                android:hint="hahahahahahahah"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_cancel"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:background="@drawable/button_roundedit"
-                android:text="Cancel"
-                android:textColor="@color/white"
-                android:visibility="invisible"
-                android:textStyle="bold"
-                android:layout_marginLeft="50dp"/>
-
-            <Button
-                android:id="@+id/button_save"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:visibility="invisible"
-                android:background="@drawable/button_roundedit"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:layout_marginLeft="50dp"
-                android:text="Save"/>
-
-
+                android:layout_marginTop="4dp"/>
         </LinearLayout>
 
     </LinearLayout>
 
-
-</LinearLayout>
+</RelativeLayout>
