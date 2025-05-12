@@ -1,7 +1,9 @@
 package com.android.homequest.API
 
+import com.android.homequest.model.ApiResponse
 import com.android.homequest.model.LoginRequest
 import com.android.homequest.model.LoginResponse
+import com.android.homequest.model.OtpRequest
 import com.android.homequest.model.PointsUpdate
 import com.android.homequest.model.Relationship
 import com.android.homequest.model.Reward
@@ -12,6 +14,9 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiService {
+
+    @POST("/send-otp")
+    fun sendOtp(@Body otpRequest: OtpRequest): Call<ApiResponse>
     @GET("users")
     fun getUsers(): Call<List<User>>
 
