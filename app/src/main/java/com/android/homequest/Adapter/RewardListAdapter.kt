@@ -33,17 +33,21 @@ class RewardListAdapter(
 
         desc.setText(reward.description)
         points.setText("${reward.points ?: 0} points")
-        if(reward.status== "Pending")
+        if(reward.status == "Pending")
         {
             status.setText("Pending")
             status.setTextColor(Color.RED)
             status.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC)
         }
-        else
+        else if(reward.status == "Claimed")
         {
             status.setText("Claimed")
             status.setTextColor(Color.GREEN)
             status.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC)
+        }
+        else
+        {
+            status.setText("Add Reward")
         }
 
         return view

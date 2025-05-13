@@ -88,10 +88,7 @@ class ParentDashboardActivity : FragmentActivity() {
 
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
-                    R.id.option_edit -> {
-                        Toast.makeText(this, "Edit clicked", Toast.LENGTH_SHORT).show()
-                        true
-                    }
+                   
                     R.id.option_delete -> {
                         startActivity(
                             Intent(this, DeleteRewardActivity::class.java)
@@ -137,14 +134,14 @@ class ParentDashboardActivity : FragmentActivity() {
                         startActivity(
                             Intent(this, RoleChildrenActivity::class.java)
                         )
-                        Toast.makeText(this, "Add clicked", Toast.LENGTH_SHORT).show()
+
                         true
                     }
                     R.id.option_delete -> {
                         startActivity(
                             Intent(this, DeleteChildActivity::class.java)
                         )
-                        Toast.makeText(this, "Delete clicked", Toast.LENGTH_SHORT).show()
+
                         true
                     }
                     else -> false

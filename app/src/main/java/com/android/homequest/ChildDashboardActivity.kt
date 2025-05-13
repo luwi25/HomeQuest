@@ -34,6 +34,13 @@ class ChildDashboardActivity : Activity() {
 
         displayUpcomingTask()
 
+        val tv_seeAll = findViewById<TextView>(R.id.tv_seeAll)
+        tv_seeAll.setOnClickListener {
+            startActivity(
+                Intent(this, UpcomingTaskActivity::class.java)
+            )
+        }
+
         val cv_todotask = findViewById<CardView>(R.id.cv_todotask)
         cv_todotask.setOnClickListener {
             startActivity(

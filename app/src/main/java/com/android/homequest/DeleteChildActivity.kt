@@ -56,26 +56,30 @@ class DeleteChildActivity : Activity() {
                         // Fetch the user data from the response
                         childList = response.body()?.toMutableList() ?: mutableListOf()
 
-                        // Initialize the adapter with the full list of users
-                        childAdapter = DeleteChildAdapter(
-                            this@DeleteChildActivity,
-                            childList,
-                            onClick = {children ->
+                        if(childList.isNotEmpty()) {
+
+                            // Initialize the adapter with the full list of users
+                            childAdapter = DeleteChildAdapter(
+                                this@DeleteChildActivity,
+                                childList,
+                                onClick = { children ->
 
 
+                                },
+                                onLongCLick = { children ->
+                                    Toast.makeText(
+                                        this@DeleteChildActivity,
+                                        "${children.parentFirstname}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
 
+                                },
+                                onDeleteButtonClick = { children ->
+                                    overlayLayout.visibility = View.VISIBLE
 
-
-                            },
-                            onLongCLick = {children ->
-                                Toast.makeText(this@DeleteChildActivity, "${children.parentFirstname}", Toast.LENGTH_SHORT).show()
-
-                            },
-                            onDeleteButtonClick = {children ->
-                                overlayLayout.visibility = View.VISIBLE
-
-                            })
-                        listView.adapter = childAdapter
+                                })
+                            listView.adapter = childAdapter
+                        }
 
                     } else {
                         // Log error if response is not successful
@@ -134,9 +138,11 @@ class DeleteChildActivity : Activity() {
                 })
 
             overlayLayout.visibility = View.GONE
+
         }
         btnCancelDelete.setOnClickListener {
             overlayLayout.visibility = View.GONE
+            recreate()
         }
 
 

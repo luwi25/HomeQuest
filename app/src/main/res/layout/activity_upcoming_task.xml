@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeleteRewardActivity">
+    tools:context=".UpcomingTaskActivity">
 
     <LinearLayout
         android:id="@+id/top"
@@ -17,8 +17,8 @@
 
         <ImageButton
             android:id="@+id/buttonback"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
             android:background="@null"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
-            android:text="Delete Reward"
+            android:text="Upcoming Tasks"
             android:textColor="#333333"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -172,68 +172,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <!-- Overlay layout for delete confirmation -->
-    <RelativeLayout
-        android:id="@+id/overlay_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        android:layout_centerInParent="true"
-        android:background="#EDF6FF">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_family"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="200dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="12dp">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Are you sure you want to delete this child?"
-                    android:textSize="18sp"
-                    android:textColor="#000000"
-                    android:padding="20dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <Button
-                        android:id="@+id/btn_confirm_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_button"
-                        android:textColor="@android:color/white"
-                        android:layout_marginVertical="10dp"
-                        android:text="Yes" />
-
-                    <Button
-                        android:id="@+id/btn_cancel_delete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/cancelbutton"
-                        android:textColor="@android:color/black"
-                        android:layout_marginVertical="10dp"
-                        android:text="No"
-                        android:layout_marginLeft="10dp"/>
-                </LinearLayout>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
 
 </RelativeLayout>

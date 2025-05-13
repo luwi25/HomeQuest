@@ -45,6 +45,18 @@ class RewardListActivity : Activity() {
                         val taskAdapter = RewardListAdapter(this@RewardListActivity, rewardList)
                         listView.adapter = taskAdapter
                     }
+                    else
+                    {
+                        val emptyRewardList = listOf(
+                            Reward(
+                                description = "No Rewards Available",
+                                points = 0,
+                                status = "Not Available",
+                            )
+                        )
+                        val emptyAdapter = RewardListAdapter(this@RewardListActivity, emptyRewardList)
+                        listView.adapter = emptyAdapter
+                    }
 
 
                 } else {

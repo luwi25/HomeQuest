@@ -7,9 +7,11 @@ import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.Toast
 import com.android.homequest.Adapter.ChildrenListAdapter
+import com.android.homequest.Adapter.RewardListAdapter
 import com.android.homequest.Adapter.RoleChildAdapter
 import com.android.homequest.RC.RetrofitClient
 import com.android.homequest.model.Relationship
+import com.android.homequest.model.Reward
 import com.android.homequest.model.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,21 +42,66 @@ class ChildrenListActivity : Activity() {
                         // Fetch the user data from the response
                         childList = response.body() ?: emptyList()
 
-                        // Initialize the adapter with the full list of users
-                        childAdapter = ChildrenListAdapter(
-                            this@ChildrenListActivity,
-                            childList,
-                            onClick = {children ->
+                        if(childList.isNotEmpty()) {
 
-                                Toast.makeText(this@ChildrenListActivity, "${children.childFirstname}", Toast.LENGTH_SHORT).show()
+                            // Initialize the adapter with the full list of users
+                            childAdapter = ChildrenListAdapter(
+                                this@ChildrenListActivity,
+                                childList,
+                                onClick = { children ->
+
+                                    Toast.makeText(
+                                        this@ChildrenListActivity,
+                                        "${children.childFirstname}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
 
 
-                            },
-                            onLongCLick = {children ->
-                                Toast.makeText(this@ChildrenListActivity, "${children.parentFirstname}", Toast.LENGTH_SHORT).show()
+                                },
+                                onLongCLick = { children ->
+                                    Toast.makeText(
+                                        this@ChildrenListActivity,
+                                        "${children.parentFirstname}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
 
-                            })
-                        listView.adapter = childAdapter
+                                })
+                            listView.adapter = childAdapter
+                        }
+                        else
+                        {
+                            val emptyChildList = listOf(
+                                Relationship(
+                                    parentFirstname = "Not Available",
+                                    parentEmail = "Not Available",
+                                    childFirstname = "No Child Available",
+                                    childLastname = "Not Available",
+                                    childEmail = "Not Available",
+                                )
+                            )
+                            val emptyAdapter = ChildrenListAdapter(
+                                this@ChildrenListActivity,
+                                emptyChildList,
+                                onClick = { children ->
+
+                                    Toast.makeText(
+                                        this@ChildrenListActivity,
+                                        "You have no child/children yet\nAdd your child on the home screen",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+
+                                },
+                                onLongCLick = { children ->
+                                    Toast.makeText(
+                                        this@ChildrenListActivity,
+                                        "Add your child/children on the dashboard",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+
+                                })
+                            listView.adapter = emptyAdapter
+                        }
 
                     } else {
                         // Log error if response is not successful
