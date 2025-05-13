@@ -11,7 +11,9 @@ import com.android.homequest.model.PointsUpdate
 import com.android.homequest.model.Relationship
 import com.android.homequest.model.Reward
 import com.android.homequest.model.StatusUpdate
+import com.android.homequest.model.TaskAssignUpdateRequest
 import com.android.homequest.model.TaskAssignment
+import com.android.homequest.model.TaskAssignmentResponse
 import com.android.homequest.model.UpdateParentResponse
 import com.android.homequest.model.UpdateUserRequest
 import com.android.homequest.model.UpdateUserResponse
@@ -80,6 +82,9 @@ interface ApiService {
 
     @DELETE("tasks/{id}")
     fun deleteTaskById(@Path("id") taskId: String): Call<TaskAssignment>
+
+    @PUT("tasks/update-assign-to")
+    fun updateAssignTo(@Body request: TaskAssignUpdateRequest): Call<TaskAssignmentResponse>
 
     @DELETE("tasks")
     fun deleteTaskByAssignee(

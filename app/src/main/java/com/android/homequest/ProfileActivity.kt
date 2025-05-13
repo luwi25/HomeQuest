@@ -16,6 +16,8 @@ import com.android.homequest.model.ChildUpdateRequest
 import com.android.homequest.model.ChildUpdateResponse
 import com.android.homequest.model.ParentFirstnameUpdateRequest
 import com.android.homequest.model.Relationship
+import com.android.homequest.model.TaskAssignUpdateRequest
+import com.android.homequest.model.TaskAssignmentResponse
 import com.android.homequest.model.UpdateParentResponse
 import com.android.homequest.model.UpdateUserRequest
 import com.android.homequest.model.UpdateUserResponse
@@ -173,6 +175,7 @@ class ProfileActivity : Activity() {
                                                 newChildLastname = updatedlastname
 
                                                 updatechild()
+                                                updateTask()
                                             }
 
                                             Log.d("API", "${user.firstname} & ${user.lastname}")
@@ -336,5 +339,30 @@ class ProfileActivity : Activity() {
             }
         })
 
+    }
+
+    fun updateTask()
+    {
+        val request = TaskAssignUpdateRequest(
+            assignToEmail = oldChildEmail,
+            newAssignTo = newChildFirstname
+        )
+
+        RetrofitClient.instance.updateAssignTo(request).enqueue(object : Callback<TaskAssignmentResponse> {
+            override fun onResponse(call: Call<TaskAssignmentResponse>, response: Response<TaskAssignmentResponse>) {
+                Log.d("API", "onResponse called")
+                if (response.isSuccessful) {
+                    val result = response.body()
+                    Log.d("API", "Message: ${result?.message}")
+                    Log.d("API", "Updated Task: ${result?.data}")
+                } else {
+                    Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
+                }
+            }
+
+            override fun onFailure(call: Call<TaskAssignmentResponse>, t: Throwable) {
+                Log.e("API", "Network failure: ${t.message}")
+            }
+        })
     }
 }
