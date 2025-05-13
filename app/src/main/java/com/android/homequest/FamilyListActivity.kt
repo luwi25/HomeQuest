@@ -3,6 +3,7 @@ package com.android.homequest
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ListView
@@ -34,6 +35,7 @@ class FamilyListActivity : Activity() {
         val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
         val ChildEmail = sharedPreferences.getString("childEmail", "default@email.com")
         val ChildFirstname = sharedPreferences.getString("childFirstname", "Default Firstname")
+        Log.d("API", "first name ${ChildFirstname} email ${ChildEmail}")
 
         var firstnameParent: String = ""
         var emailParent: String = ""

@@ -1,14 +1,20 @@
 package com.android.homequest.API
 
 import com.android.homequest.model.ApiResponse
+import com.android.homequest.model.ChildUpdateRequest
+import com.android.homequest.model.ChildUpdateResponse
 import com.android.homequest.model.LoginRequest
 import com.android.homequest.model.LoginResponse
 import com.android.homequest.model.OtpRequest
+import com.android.homequest.model.ParentFirstnameUpdateRequest
 import com.android.homequest.model.PointsUpdate
 import com.android.homequest.model.Relationship
 import com.android.homequest.model.Reward
 import com.android.homequest.model.StatusUpdate
 import com.android.homequest.model.TaskAssignment
+import com.android.homequest.model.UpdateParentResponse
+import com.android.homequest.model.UpdateUserRequest
+import com.android.homequest.model.UpdateUserResponse
 import com.android.homequest.model.User
 import retrofit2.Call
 import retrofit2.http.*
@@ -19,6 +25,18 @@ interface ApiService {
     fun sendOtp(@Body otpRequest: OtpRequest): Call<ApiResponse>
     @GET("users")
     fun getUsers(): Call<List<User>>
+
+    @GET("/users/{id}")
+    fun getUserById(
+        @Path("id") id: String
+    ): Call<User>
+
+
+    @PUT("/users/{id}")
+    fun updateUser(
+        @Path("id") id: String,
+        @Body request: UpdateUserRequest
+    ): Call<UpdateUserResponse>
 
     @POST("/login")
     fun login(@Body loginRequest: LoginRequest): Call<LoginResponse>
@@ -97,4 +115,13 @@ interface ApiService {
         @Query("childFirstname") childFirstname: String? = null,
         @Query("childEmail") childEmail: String? = null
     ): Call<List<Relationship>>
+
+    @PUT("/relationships/update-child")
+    fun updateChild(@Body childUpdate: ChildUpdateRequest): Call<ChildUpdateResponse>
+
+    @PUT("relationships/update-parent-firstname")
+    fun updateParentFirstname(
+        @Body request: ParentFirstnameUpdateRequest
+    ): Call<UpdateParentResponse>
+
 }

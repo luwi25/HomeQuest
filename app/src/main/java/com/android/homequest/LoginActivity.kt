@@ -38,28 +38,27 @@ class LoginActivity : Activity() {
         var Password  = ""
         var Role = ""
 
-        val otpRequest = OtpRequest(
-            to = "rabbihernaez@gmail.com" // Replace with the user's email address
-        )
-
-        RetrofitClient.instance.sendOtp(otpRequest).enqueue(object : retrofit2.Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: retrofit2.Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    val otp = response.body()?.otp
-                    Log.d("API", "OTP Sent: ${response.body()?.message}")
-                    Log.d("API", "OTP Generated: $otp")
-
-                    // Store OTP locally for verification later
-                    // Store the OTP value (or in SharedPreferences)
-                } else {
-                    Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Log.e("API", "Error: ${t.message}")
-            }
-        })
+//        val otpRequest = OtpRequest(
+//            to = "rabbihernaez@gmail.com"
+//        )
+//
+//        RetrofitClient.instance.sendOtp(otpRequest).enqueue(object : retrofit2.Callback<ApiResponse> {
+//            override fun onResponse(call: Call<ApiResponse>, response: retrofit2.Response<ApiResponse>) {
+//                if (response.isSuccessful) {
+//                    val otp = response.body()?.otp
+//                    Log.d("API", "OTP Sent: ${response.body()?.message}")
+//                    Log.d("API", "OTP Generated: $otp")
+//
+//
+//                } else {
+//                    Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+//                Log.e("API", "Error: ${t.message}")
+//            }
+//        })
 
         intent?.let {
             it.getStringExtra("email")?.let { email  ->
@@ -101,6 +100,7 @@ class LoginActivity : Activity() {
                         if(role == "Parent")
                         {
                             editor.putString("parentFirstname", user.firstname)
+                            editor.putString("parentID", user.id)
                             editor.putString("parentLastname", user.lastname)
                             editor.putString("parentEmail", user.email)
                             editor.putString("role", "Parent")
