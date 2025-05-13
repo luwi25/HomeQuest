@@ -6,5 +6,6 @@ data class Reward (
     @SerializedName("_id") val id: String? = null,
     var description: String,
     var points: Int,
-    var status: String
+    var status: String,
+    var createdBy: String? = null
 )

@@ -71,5 +71,12 @@ class RewardListActivity : Activity() {
             )
         }
 
+        val AddReward = findViewById<ImageButton>(R.id.AddReward)
+        AddReward.setOnClickListener {
+            startActivity(
+                Intent(this, AddRewardActivity::class.java)
+            )
+        }
+
     }
 }

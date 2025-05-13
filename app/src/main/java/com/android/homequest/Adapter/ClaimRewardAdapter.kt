@@ -43,11 +43,15 @@ class ClaimRewardAdapter(
             status.setTextColor(Color.RED)
             status.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC)
         }
-        else
+        else if(reward.status== "Claimed")
         {
             status.setText("Claimed")
             status.setTextColor(Color.GREEN)
             status.setTypeface(null, android.graphics.Typeface.BOLD_ITALIC)
+        }
+        else
+        {
+            status.setText("Not Available")
         }
 
         view.setOnClickListener {

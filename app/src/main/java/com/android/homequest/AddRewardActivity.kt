@@ -21,6 +21,9 @@ class AddRewardActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_reward)
 
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val createdBy = sharedPreferences.getString("parentEmail", "Default")
+
 
         val button_back = findViewById<ImageButton>(R.id.button_back)
         button_back.setOnClickListener {
@@ -42,7 +45,8 @@ class AddRewardActivity : Activity() {
             val rewardS = Reward(
                 description = rewardDescription,
                 points = taskpoints,
-                status = "Pending"
+                status = "Pending",
+                createdBy = createdBy
             )
 
             RetrofitClient.instance.createReward(rewardS).enqueue(object : Callback<Reward> {
