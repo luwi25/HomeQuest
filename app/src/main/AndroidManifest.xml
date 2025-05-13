@@ -19,6 +19,9 @@
         android:theme="@style/Theme.HomeQuest"
         tools:targetApi="31">
         <activity
+            android:name=".OtpConfirmationActivity"
+            android:exported="false" />
+        <activity
             android:name=".UpcomingTaskActivity"
             android:exported="false" />
         <activity

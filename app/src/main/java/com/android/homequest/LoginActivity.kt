@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.android.homequest.Adapter.TaskAssignmentAdapter
 import com.android.homequest.RC.RetrofitClient
 import com.android.homequest.model.ApiResponse
@@ -31,6 +33,28 @@ class LoginActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val edittext_email = findViewById<EditText>(R.id.edittext_email)
+        val edittext_password = findViewById<EditText>(R.id.edittext_password)
+
+        val drawable = ContextCompat.getDrawable(this, R.drawable.email)
+        val drawablePassword = ContextCompat.getDrawable(this, R.drawable.password)
+
+        // Convert dp to pixels
+        val sizeInDp = 25
+        val sizeInPx = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            sizeInDp.toFloat(),
+            resources.displayMetrics
+        ).toInt()
+
+        // Set bounds (this resizes the drawable)
+        drawable?.setBounds(0, 0, sizeInPx, sizeInPx)
+        drawablePassword?.setBounds(0, 0, sizeInPx, sizeInPx)
+
+        // Apply the drawable to the end of the EditText
+        edittext_email.setCompoundDrawablesRelative(null, null, drawable, null)
+        edittext_password.setCompoundDrawablesRelative(null, null, drawablePassword, null)
+
 
 
 
@@ -38,45 +62,34 @@ class LoginActivity : Activity() {
         var Password  = ""
         var Role = ""
 
-//        val otpRequest = OtpRequest(
-//            to = "rabbihernaez@gmail.com"
-//        )
-//
-//        RetrofitClient.instance.sendOtp(otpRequest).enqueue(object : retrofit2.Callback<ApiResponse> {
-//            override fun onResponse(call: Call<ApiResponse>, response: retrofit2.Response<ApiResponse>) {
-//                if (response.isSuccessful) {
-//                    val otp = response.body()?.otp
-//                    Log.d("API", "OTP Sent: ${response.body()?.message}")
-//                    Log.d("API", "OTP Generated: $otp")
-//
-//
-//                } else {
-//                    Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-//                Log.e("API", "Error: ${t.message}")
-//            }
-//        })
+        val otpRequest = OtpRequest(
+            to = "louiebringcula1247@gmail.com"
+        )
 
-        intent?.let {
-            it.getStringExtra("email")?.let { email  ->
-                Email = email
+        RetrofitClient.instance.sendOtp(otpRequest).enqueue(object : retrofit2.Callback<ApiResponse> {
+            override fun onResponse(call: Call<ApiResponse>, response: retrofit2.Response<ApiResponse>) {
+                if (response.isSuccessful) {
+                    val otp = response.body()?.otp
+                    Log.d("API", "OTP Sent: ${response.body()?.message}")
+                    Log.d("API", "OTP Generated: $otp")
+
+
+                } else {
+                    Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
+                }
             }
-            it.getStringExtra("password")?.let { password  ->
-                Password = password
+
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                Log.e("API", "Error: ${t.message}")
             }
-            it.getStringExtra("role")?.let { role  ->
-                Role = role
-            }
-        }
+        })
+
+
 
         val button_login = findViewById<Button>(R.id.button_login)
         button_login.setOnClickListener {
 
-            val edittext_email = findViewById<EditText>(R.id.edittext_email)
-            val edittext_password = findViewById<EditText>(R.id.edittext_password)
+
 
             val email = edittext_email.text.toString()
             val password = edittext_password.text.toString()
@@ -113,6 +126,7 @@ class LoginActivity : Activity() {
                             editor.putInt("childPoints", user.points ?: 0)
                             editor.putString("childID", user.id)
                             editor.putString("childFirstname", user.firstname)
+                            editor.putString("childLastname", user.lastname)
                             editor.putString("childEmail", user.email)
                             editor.putString("role", "Child")
                             editor.commit()

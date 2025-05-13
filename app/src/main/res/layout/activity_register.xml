@@ -6,37 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="#F2F4FF"
+    android:background="@drawable/backgroundgradient"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:background="#B8C3FF">
 
-        <ImageButton
-            android:id="@+id/button_back"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/img_2"
-            android:scaleType="centerInside"
-            android:background="@null" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Registration"
-            android:textColor="#333333"
-            android:layout_gravity="center_vertical"
-            android:textSize="24sp"
-            android:layout_marginLeft="10dp"
-            android:textStyle="bold" />
-
-
-    </LinearLayout>
 
 
 
@@ -45,13 +18,69 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="30dp"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="20dp">
+
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="17dp">
+            android:padding="30dp">
+
+            <ImageButton
+                android:id="@+id/button_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginBottom="25dp"
+                android:src="@drawable/img_2"
+                android:scaleType="centerInside"
+                android:background="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign up"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="15dp"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have an account?"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginBottom="10dp"/>
+
+                <TextView
+                    android:id="@+id/tv_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:textSize="16sp"
+                    android:textColor="#4B96DD"
+                    android:layout_marginLeft="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+
+            </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,12 +88,11 @@
             android:text="First Name: "
             android:textColor="#333333"
             android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
             <EditText
                 android:id="@+id/edittext_firstname"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/roundtext"
                 android:hint="Enter First name"
@@ -78,13 +106,12 @@
         android:text="Last Name: "
         android:textColor="#333333"
         android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:textSize="16sp"/>
+        android:textSize="14sp"/>
 
 
     <EditText
         android:id="@+id/edittext_lastname"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/roundtext"
         android:hint="Enter Last Name"
@@ -99,13 +126,12 @@
                 android:layout_marginTop="10dp"
                 android:text="Role"
                 android:textColor="#333333"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="14sp"/>
 
             <LinearLayout
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:background="@android:color/white"
+                android:background="@drawable/roundtext"
                 android:layout_marginTop="5dp">
 
                 <Spinner
@@ -124,12 +150,11 @@
                 android:text="Email: "
                 android:textColor="#333333"
                 android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="16sp"/>
+                android:textSize="14sp"/>
 
             <EditText
                 android:id="@+id/edittext_email"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/roundtext"
                 android:hint="Enter Email"
@@ -145,18 +170,18 @@
             android:layout_marginTop="10dp"
             android:text="Password: "
             android:textColor="#333333"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="14sp" />
 
 
         <EditText
             android:id="@+id/edittext_password"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/roundtext"
             android:hint="Enter Password"
             android:paddingLeft="5dp"
             android:textColorHint="@android:color/black"
+            android:inputType="textPassword"
             android:textSize="14sp"/>
 
 
@@ -168,19 +193,19 @@
             android:layout_height="wrap_content"
             android:text="Confirm Password: "
             android:textColor="#333333"
-            android:textStyle="bold"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"/>
+            android:textSize="14sp"/>
 
 
         <EditText
             android:id="@+id/edittext_confirmpassword"
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/roundtext"
             android:hint="Confirm Password"
             android:paddingLeft="5dp"
             android:textColorHint="@android:color/black"
+            android:inputType="textPassword"
             android:textSize="14sp"/>
 
 
@@ -197,6 +222,8 @@
         android:background="@drawable/rounded_button" />
 
         </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
     </ScrollView>
 
 
