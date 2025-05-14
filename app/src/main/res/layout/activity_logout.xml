@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#F2F4FF"
+    android:background="#EDF6FF"
     android:orientation="vertical"
     tools:context=".LogoutActivity">
 
@@ -47,7 +47,7 @@
         android:textColor="@android:color/black"
         android:layout_marginTop="15dp"
         android:textStyle="bold"
-        android:background="@drawable/profileround"
+        android:background="@drawable/cancelbutton"
         android:layout_marginBottom="10dp"/>
 
 </LinearLayout>

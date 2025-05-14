@@ -94,6 +94,10 @@ class SubmitTaskActivity : Activity() {
                 editor.putInt("childPoints", pointsUpdate.points)
                 editor.commit()
 
+                startActivity(
+                    Intent(this, ToDoTaskActivity::class.java)
+                )
+
                 val success = sharedPreferences.getInt("childPoints", 0)
 
                 Log.d("Success", "${success}")

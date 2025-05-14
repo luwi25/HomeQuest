@@ -137,6 +137,10 @@ class ClaimingRewardActivity : Activity() {
                 val newpoints = childPoints - rewardPoints
                 editor.putInt("childPoints", newpoints)
                 editor.commit()
+
+                startActivity(
+                    Intent(this, ClaimRewardListActivity::class.java)
+                )
                 Log.d("NEW", "${newpoints}")
 
             }

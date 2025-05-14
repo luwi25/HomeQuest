@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ChildDashboardActivity"
     android:orientation="vertical"
-    android:background="#F2F4FF">
+    android:background="#EDF6FF">
 
     <FrameLayout
         android:id="@+id/topheader"

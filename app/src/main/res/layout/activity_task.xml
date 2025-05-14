@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF8ED"
+    android:background="#EDF6FF"
     tools:context=".TaskActivity">
 
     <LinearLayout
@@ -105,7 +105,7 @@
                 android:paddingLeft="16dp"
                 android:clickable="true"
                 android:textColorHint="@android:color/black"
-                android:drawableEnd="@drawable/img_29"
+                android:drawableEnd="@drawable/dateimg"
                 android:textSize="14sp" />
 
             <Button

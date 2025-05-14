@@ -20,8 +20,22 @@ class SettingsActivity : Activity() {
 
         val button_back = findViewById<ImageButton>(R.id.button_back)
         button_back.setOnClickListener {
-            val intent = Intent(this, ParentDashboardActivity::class.java)
-            startActivity(intent)
+
+            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+            val role = sharedPreferences.getString("role", "Default")
+
+            if(role == "Parent")
+            {
+                startActivity(
+                    Intent(this, ParentDashboardActivity::class.java)
+                )
+            }
+            else if(role == "Child")
+            {
+                startActivity(
+                    Intent(this, ChildDashboardActivity::class.java)
+                )
+            }
         }
 
 
