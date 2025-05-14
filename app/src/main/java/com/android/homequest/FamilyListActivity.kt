@@ -71,7 +71,7 @@ class FamilyListActivity : Activity() {
                                             // Fetch the user data from the response
                                             childList = response.body() ?: emptyList()
 
-                                            tv_name.setText("${targetRelationship.parentFirstname} ${targetRelationship.parentEmail}")
+                                            tv_name.setText("${targetRelationship.parentFirstname}\n${targetRelationship.parentEmail}")
 
                                             // Initialize the adapter with the full list of users
                                             childAdapter = ChildrenListAdapter(

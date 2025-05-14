@@ -46,6 +46,7 @@
                 android:layout_marginBottom="15dp"/>
 
             <TextView
+                android:id="@+id/sentence"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Enter the verification code we just sent to your email"

@@ -5,38 +5,76 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F4FF"
+    android:background="@drawable/backgroundgradient"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
     <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_gravity="center"
-        android:src="@drawable/zzz" />
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/loginimg"
+        android:background="@null"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in to your\n     Account"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your email and password to login"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"/>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="30dp"
+            android:orientation="vertical">
+
+
+
+
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginLeft="20dp"
         android:text="Email"
         android:textColor="#333333"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edittext_email"
-        android:layout_width="290dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="35dp"
         android:background="@drawable/roundtext"
         android:hint="Enter Email"
         android:paddingLeft="16dp"
         android:textColorHint="#808080"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textStyle="bold" />
 
     <TextView
@@ -56,24 +94,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="2dp"
-        android:layout_marginStart="35dp"
         android:layout_marginTop="20dp"
         android:text="Password"
         android:textColor="#333333"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edittext_password"
-        android:layout_width="290dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginStart="35dp"
         android:background="@drawable/roundtext"
         android:hint="Enter Password"
         android:inputType="textPassword"
         android:paddingLeft="16dp"
         android:textColorHint="#808080"
-        android:textSize="14sp"
+        android:textSize="10sp"
         android:textStyle="bold" />
 
 
@@ -91,16 +127,17 @@
             android:layout_marginLeft="20dp"
             android:text="Invalid  Password"
             android:textColor="@android:color/holo_red_dark"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             android:visibility="invisible" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="65dp"
+            android:layout_marginLeft="35dp"
             android:text="Forgot Password?"
-            android:textColor="#3B4DB2"
+            android:textColor="#15A6CE"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
 
@@ -108,7 +145,7 @@
 
     <Button
         android:id="@+id/button_login"
-        android:layout_width="290dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginVertical="20dp"
@@ -122,20 +159,25 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="115dp"
         android:text="Don't have an account?"
+        android:layout_gravity="center_horizontal"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/button_register"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/cancelbutton"
-        android:text="Create your account"
-        android:textColor="#3B4DB2"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+            <TextView
+                android:id="@+id/button_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign-up"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#15A6CE"
+                android:clickable="true"
+                android:focusable="true"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 </LinearLayout>

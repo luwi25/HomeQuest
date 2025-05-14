@@ -62,27 +62,7 @@ class LoginActivity : Activity() {
         var Password  = ""
         var Role = ""
 
-        val otpRequest = OtpRequest(
-            to = "louiebringcula1247@gmail.com"
-        )
 
-        RetrofitClient.instance.sendOtp(otpRequest).enqueue(object : retrofit2.Callback<ApiResponse> {
-            override fun onResponse(call: Call<ApiResponse>, response: retrofit2.Response<ApiResponse>) {
-                if (response.isSuccessful) {
-                    val otp = response.body()?.otp
-                    Log.d("API", "OTP Sent: ${response.body()?.message}")
-                    Log.d("API", "OTP Generated: $otp")
-
-
-                } else {
-                    Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
-                }
-            }
-
-            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
-                Log.e("API", "Error: ${t.message}")
-            }
-        })
 
 
 

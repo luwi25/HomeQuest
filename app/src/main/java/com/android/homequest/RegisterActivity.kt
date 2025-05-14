@@ -26,6 +26,10 @@ class RegisterActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        val lastnamefromOtp = intent.getStringExtra("lastname")
+        val firstnamefromOtp = intent.getStringExtra("firstname")
+        val rolefromOtp = intent.getStringExtra("role")
+
         val tv_login = findViewById<TextView>(R.id.tv_login)
         tv_login.setOnClickListener {
             startActivity(
@@ -45,6 +49,9 @@ class RegisterActivity : Activity() {
 
         val edittext_email = findViewById<EditText>(R.id.edittext_email)
         val button_register = findViewById<Button>(R.id.button_register)
+
+        edittext_firstname.setText(firstnamefromOtp)
+        edittext_lastname.setText(lastnamefromOtp)
 
         // Convert dp to pixels
         val sizeInDp = 25
@@ -137,9 +144,18 @@ class RegisterActivity : Activity() {
                         Log.d("API", "OTP Sent: ${response.body()?.message}")
                         Log.d("API", "OTP Generated: $otp")
                         newotp = otp.toString()
-                        editor.putString("otp", newotp)
-                        editor.putString("sendToEmail", email)
-                        editor.commit()
+
+                        startActivity(
+                            Intent(this@RegisterActivity, OtpConfirmationActivity::class.java).apply {
+                                putExtra("lastname", lastname)
+                                putExtra("firstname", firstname)
+                                putExtra("role", role)
+                                putExtra("email", email)
+                                putExtra("password", password)
+                                putExtra("otp", newotp)
+                            }
+                        )
+
 
 
                     } else {
@@ -152,38 +168,11 @@ class RegisterActivity : Activity() {
                 }
             })
 
-            // Create a user
-            val user = User(
-                lastname = lastname,
-                firstname = firstname,
-                role = role,
-                email = email,
-                password = password
-            )
-
-            // POST request
-            RetrofitClient.instance.createUser(user).enqueue(object : Callback<User> {
-                override fun onResponse(call: Call<User>, response: Response<User>) {
-                    if (response.isSuccessful) {
-                        Log.d("API", "User Created: ${response.body()}")
-                    }
-                }
-
-                override fun onFailure(call: Call<User>, t: Throwable) {
-                    Log.e("API", "Error: ${t.message}")
-                }
-            })
-
-
-
-            startActivity(
-                Intent(this, OtpConfirmationActivity::class.java)
-            )
         }
 
         val button_back = findViewById<ImageButton>(R.id.button_back)
         button_back.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, StartingPageActivity::class.java)
             startActivity(intent)
         }
 
