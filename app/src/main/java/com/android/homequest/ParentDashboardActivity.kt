@@ -18,6 +18,13 @@ class ParentDashboardActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_parent_dashboard)
 
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+
+        val parentname = sharedPreferences.getString("parentFirstname", "Default")
+
+        val welcomeText = findViewById<TextView>(R.id.welcome_text)
+        welcomeText.setText("Welcome ${parentname}")
+
         val imagebutton_addtask = findViewById<LinearLayout>(R.id.imagebutton_addtask)
         imagebutton_addtask.setOnClickListener {
             startActivity(

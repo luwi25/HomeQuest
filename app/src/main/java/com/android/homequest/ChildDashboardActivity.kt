@@ -33,6 +33,16 @@ class ChildDashboardActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_child_dashboard)
 
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val totalPoints = sharedPreferences.getInt("childPoints", 0)
+        val childname = sharedPreferences.getString("childFirstname", "Default")
+
+        val welcomeText = findViewById<TextView>(R.id.welcome_text)
+        welcomeText.setText("Welcome ${childname}")
+
+        val totalPointsText = findViewById<TextView>(R.id.desc_text)
+        totalPointsText.setText("Total Points: ${totalPoints}")
+
         displayUpcomingTask()
 
         val tv_seeAll = findViewById<TextView>(R.id.tv_seeAll)
