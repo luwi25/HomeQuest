@@ -112,7 +112,7 @@
 
         <!-- Home -->
         <LinearLayout
-            android:id="@+id/parent"
+            android:id="@+id/home"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -122,6 +122,8 @@
             <ImageButton
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:focusable="false"
+                android:clickable="false"
                 android:background="@null"
                 android:src="@drawable/img_3"
                 android:scaleType="fitCenter"
@@ -150,6 +152,8 @@
                 android:id="@+id/ib_settings"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:focusable="false"
+                android:clickable="false"
                 android:background="@null"
                 android:src="@drawable/img_6"
                 android:scaleType="fitCenter"
@@ -179,6 +183,8 @@
                 android:id="@+id/ib_ct"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:focusable="false"
+                android:clickable="false"
                 android:background="@null"
                 android:src="@drawable/img_9"
                 android:scaleType="fitCenter"
@@ -206,6 +212,8 @@
             <ImageButton
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:focusable="false"
+                android:clickable="false"
                 android:background="@null"
                 android:src="@drawable/img_8"
                 android:scaleType="fitCenter"

@@ -14,6 +14,12 @@ class StartingPageActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_starting_page)
 
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        editor.putString("screen", "StartingPage")
+        editor.commit()
+
         val button_login = findViewById<Button>(R.id.button_login)
         button_login.setOnClickListener {
             startActivity(

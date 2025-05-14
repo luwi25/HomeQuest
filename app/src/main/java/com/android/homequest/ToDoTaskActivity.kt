@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.android.homequest.Adapter.ChildrenListAdapter
 import android.graphics.Color
+import android.widget.LinearLayout
 import com.android.homequest.Adapter.TaskAssignmentAdapter
 import com.android.homequest.Adapter.TaskListAdapter
 import com.android.homequest.Adapter.ToDoListAdapter
@@ -125,6 +126,32 @@ class ToDoTaskActivity : Activity() {
         buttonback.setOnClickListener {
             startActivity(
                 Intent(this, ChildDashboardActivity::class.java)
+            )
+        }
+
+        val home = findViewById<LinearLayout>(R.id.home)
+        home.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+            val role = sharedPreferences.getString("role", "Default")
+
+            if(role == "Parent")
+            {
+                startActivity(
+                    Intent(this, ParentDashboardActivity::class.java)
+                )
+            }
+            else if(role == "Child")
+            {
+                startActivity(
+                    Intent(this, ChildDashboardActivity::class.java)
+                )
+            }
+        }
+
+        val settings = findViewById<LinearLayout>(R.id.settings)
+        settings.setOnClickListener {
+            startActivity(
+                Intent(this, SettingsActivity::class.java)
             )
         }
     }

@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -103,6 +104,32 @@ class SubmitTaskActivity : Activity() {
         button_back.setOnClickListener {
             startActivity(
                 Intent(this, ToDoTaskActivity::class.java)
+            )
+        }
+
+        val home = findViewById<LinearLayout>(R.id.home)
+        home.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+            val role = sharedPreferences.getString("role", "Default")
+
+            if(role == "Parent")
+            {
+                startActivity(
+                    Intent(this, ParentDashboardActivity::class.java)
+                )
+            }
+            else if(role == "Child")
+            {
+                startActivity(
+                    Intent(this, ChildDashboardActivity::class.java)
+                )
+            }
+        }
+
+        val settings = findViewById<LinearLayout>(R.id.settings)
+        settings.setOnClickListener {
+            startActivity(
+                Intent(this, SettingsActivity::class.java)
             )
         }
 

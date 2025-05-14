@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.PopupMenu
 import android.widget.TextView
@@ -62,27 +63,33 @@ class ChildDashboardActivity : Activity() {
             )
         }
 
-        val iv_familyoption = findViewById<ImageView>(R.id.iv_familyoption)
-        iv_familyoption.setOnClickListener {
-            val popupMenu = PopupMenu(this, iv_familyoption)
-            popupMenu.menuInflater.inflate(R.menu.popup_menu, popupMenu.menu)
+        val home = findViewById<LinearLayout>(R.id.home)
+        home.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+            val role = sharedPreferences.getString("role", "Default")
 
-            popupMenu.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.option_edit -> {
-                        Toast.makeText(this, "Edit clicked", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    R.id.option_delete -> {
-                        Toast.makeText(this, "Delete clicked", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    else -> false
-                }
+            if(role == "Parent")
+            {
+                startActivity(
+                    Intent(this, ParentDashboardActivity::class.java)
+                )
             }
-
-            popupMenu.show()
+            else if(role == "Child")
+            {
+                startActivity(
+                    Intent(this, ChildDashboardActivity::class.java)
+                )
+            }
         }
+
+        val settings = findViewById<LinearLayout>(R.id.settings)
+        settings.setOnClickListener {
+            startActivity(
+                Intent(this, SettingsActivity::class.java)
+            )
+        }
+
+
 
         val button_profile = findViewById<ImageButton>(R.id.button_profile)
 

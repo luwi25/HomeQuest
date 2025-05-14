@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -77,6 +78,9 @@ class OtpConfirmationActivity : Activity() {
                             // User created successfully
                             Log.d("API", "User Created: ${response.body()}")
                             Toast.makeText(this@OtpConfirmationActivity, "Registered Successfully", Toast.LENGTH_SHORT).show()
+                            startActivity(
+                                Intent(this@OtpConfirmationActivity, LoginActivity::class.java)
+                            )
                         } else if (response.code() == 409) {
                             // Handle duplicate email error
                             Toast.makeText(this@OtpConfirmationActivity, "Email already exists. Please use another email.", Toast.LENGTH_SHORT).show()
@@ -134,6 +138,13 @@ class OtpConfirmationActivity : Activity() {
                 }
             })
 
+        }
+
+        val button_back = findViewById<ImageButton>(R.id.button_back)
+        button_back.setOnClickListener {
+            startActivity(
+                Intent(this, RegisterActivity::class.java)
+            )
         }
 
     }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.Toast
 import com.android.homequest.Adapter.ChildrenListAdapter
@@ -77,6 +78,39 @@ class AssignTaskActivity : Activity() {
         buttonback.setOnClickListener {
             startActivity(
                 Intent(this, ParentDashboardActivity::class.java)
+            )
+        }
+
+        val home = findViewById<LinearLayout>(R.id.home)
+        home.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+            val role = sharedPreferences.getString("role", "Default")
+
+            if(role == "Parent")
+            {
+                startActivity(
+                    Intent(this, ParentDashboardActivity::class.java)
+                )
+            }
+            else if(role == "Child")
+            {
+                startActivity(
+                    Intent(this, ChildDashboardActivity::class.java)
+                )
+            }
+        }
+
+        val settings = findViewById<LinearLayout>(R.id.settings)
+        settings.setOnClickListener {
+            startActivity(
+                Intent(this, SettingsActivity::class.java)
+            )
+        }
+
+        val addtask = findViewById<LinearLayout>(R.id.imagebutton_addtask)
+        addtask.setOnClickListener {
+            startActivity(
+                Intent(this, AssignTaskActivity::class.java)
             )
         }
 

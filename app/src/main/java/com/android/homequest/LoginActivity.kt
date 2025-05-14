@@ -62,7 +62,10 @@ class LoginActivity : Activity() {
         var Password  = ""
         var Role = ""
 
-
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("screen", "Login")
+        editor.commit()
 
 
 
@@ -74,8 +77,10 @@ class LoginActivity : Activity() {
             val email = edittext_email.text.toString()
             val password = edittext_password.text.toString()
 
-            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
-            val editor = sharedPreferences.edit()
+//            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+//            val editor = sharedPreferences.edit()
+
+
 
 // Create the login request object
             val loginRequest = LoginRequest(email, password)

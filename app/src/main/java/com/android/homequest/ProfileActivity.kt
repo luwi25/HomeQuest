@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import com.android.homequest.RC.RetrofitClient
 import com.android.homequest.model.ChildUpdateRequest
 import com.android.homequest.model.ChildUpdateResponse
@@ -282,6 +283,32 @@ class ProfileActivity : Activity() {
             et_firstname.requestFocus()
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.showSoftInput(et_firstname, InputMethodManager.SHOW_IMPLICIT)
+        }
+
+        val home = findViewById<LinearLayout>(R.id.home)
+        home.setOnClickListener {
+            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+            val role = sharedPreferences.getString("role", "Default")
+
+            if(role == "Parent")
+            {
+                startActivity(
+                    Intent(this, ParentDashboardActivity::class.java)
+                )
+            }
+            else if(role == "Child")
+            {
+                startActivity(
+                    Intent(this, ChildDashboardActivity::class.java)
+                )
+            }
+        }
+
+        val settings = findViewById<LinearLayout>(R.id.settings)
+        settings.setOnClickListener {
+            startActivity(
+                Intent(this, SettingsActivity::class.java)
+            )
         }
 
     }

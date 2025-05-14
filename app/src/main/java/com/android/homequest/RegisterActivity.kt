@@ -95,7 +95,7 @@ class RegisterActivity : Activity() {
                 id: Long
             ) {
                 val selectedItem = options[position]
-                Toast.makeText(this@RegisterActivity, "Selected: $selectedItem", Toast.LENGTH_SHORT).show()
+
             }
 
             override fun onNothingSelected(parent: android.widget.AdapterView<*>) {
@@ -172,8 +172,24 @@ class RegisterActivity : Activity() {
 
         val button_back = findViewById<ImageButton>(R.id.button_back)
         button_back.setOnClickListener {
-            val intent = Intent(this, StartingPageActivity::class.java)
-            startActivity(intent)
+
+            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+            val screen = sharedPreferences.getString("screen", "Default")
+
+            if(screen == "StartingPage")
+            {
+                startActivity(
+                    Intent(this, StartingPageActivity::class.java)
+                )
+            }
+            else if(screen == "Login")
+            {
+                startActivity(
+                    Intent(this, LoginActivity::class.java)
+                )
+            }
+
+
         }
 
 
