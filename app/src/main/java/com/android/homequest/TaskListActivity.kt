@@ -30,6 +30,9 @@ class TaskListActivity : Activity() {
 
         val listView = findViewById<ListView>(R.id.listview)
 
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val createdbyEmail = sharedPreferences.getString("parentEmail", "Default")
+
         // Fetch tasks from backend
         RetrofitClient.instance.getTodayTasks().enqueue(object : Callback<List<TaskAssignment>> {
             override fun onResponse(call: Call<List<TaskAssignment>>, response: Response<List<TaskAssignment>>) {
@@ -37,10 +40,13 @@ class TaskListActivity : Activity() {
                     // Get the list of tasks
                     val taskList = response.body() ?: emptyList()
 
+                    val filteredTasks = taskList.filter { it.createdByEmail == createdbyEmail }
+
                     // Set up the adapter to display the task names
-                    val taskAdapter = TaskAssignmentAdapter(this@TaskListActivity, taskList)
-                    if(taskList.isNotEmpty())
+
+                    if(filteredTasks.isNotEmpty())
                     {
+                        val taskAdapter = TaskAssignmentAdapter(this@TaskListActivity, filteredTasks)
                         listView.adapter = taskAdapter
                     }
                     else

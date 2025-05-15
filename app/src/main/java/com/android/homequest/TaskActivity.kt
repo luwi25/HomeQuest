@@ -30,6 +30,8 @@ class TaskActivity : Activity() {
 
 
 
+
+
         // Calendar DateTime Picker
         //calendar date picker
         val calendar = Calendar.getInstance()
@@ -127,6 +129,8 @@ class TaskActivity : Activity() {
 
             val ChildFirstname = sharedPreferences.getString("childFirstname", "Default Firstname")
             val ChildEmail = sharedPreferences.getString("childEmail", "default@email.com")
+            val ParentEmail = sharedPreferences.getString("parentEmail", "Default")
+            Toast.makeText(this, "email: ${ParentEmail}", Toast.LENGTH_SHORT).show()
 
             val taskAssignment = TaskAssignment(
                 assignTo = ChildFirstname.toString(),
@@ -134,7 +138,8 @@ class TaskActivity : Activity() {
                 taskname = taskname,
                 taskpoints = taskpoints,
                 assignDate = atayDate,
-                status = "Pending"
+                status = "Pending",
+                createdByEmail = ParentEmail
 
             )
 

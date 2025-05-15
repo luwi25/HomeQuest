@@ -77,6 +77,11 @@ class LoginActivity : Activity() {
             val email = edittext_email.text.toString()
             val password = edittext_password.text.toString()
 
+            if(email.isNullOrEmpty() || password.isNullOrEmpty())
+            {
+                Toast.makeText(this, "Username or password is empty", Toast.LENGTH_SHORT).show()
+            }
+
 //            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
 //            val editor = sharedPreferences.edit()
 

@@ -10,6 +10,7 @@ data class TaskAssignment (
     var taskname: String,
     var taskpoints: Int,
     var assignDate: String,
-    var status: String
+    var status: String,
+    var createdByEmail: String? = null
 
 )
