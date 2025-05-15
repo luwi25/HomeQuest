@@ -10,10 +10,25 @@ class LogoutActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_logout)
 
+        val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
+        val role = sharedPreferences.getString("role", "Default")
+
         val btnCancel = findViewById<Button>(R.id.btnCancel)
         btnCancel.setOnClickListener {
-            val intent = Intent(this, ParentDashboardActivity::class.java)
-            startActivity(intent)
+
+            if(role == "Parent")
+            {
+                startActivity(
+                    Intent(this, ParentDashboardActivity::class.java)
+                )
+            }
+            else if(role == "Child")
+            {
+                startActivity(
+                    Intent(this, ChildDashboardActivity::class.java)
+                )
+            }
+
         }
         val btnLogout = findViewById<Button>(R.id.btnLogout)
         btnLogout.setOnClickListener {
