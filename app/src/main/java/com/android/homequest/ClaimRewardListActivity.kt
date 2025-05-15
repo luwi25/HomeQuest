@@ -54,7 +54,7 @@ class ClaimRewardListActivity : Activity() {
                                 // Set up the adapter to display the task names
                                 val taskAdapter = ClaimRewardAdapter(
                                     this@ClaimRewardListActivity,
-                                    rewardList,
+                                    matchingRewards,
                                     onClick = { reward ->
                                         val rewardId = reward.id
                                         editor.putString("rewardID", rewardId)

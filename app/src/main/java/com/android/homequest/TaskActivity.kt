@@ -125,6 +125,12 @@ class TaskActivity : Activity() {
             val atayDate: String = buttonPickDate.text.toString()
             Log.d("DEBUG", "assignDate from EditText: $atayDate")
 
+            if(et_taskname.text.isEmpty() || et_taskpoints.text.isEmpty() || atayDate.isEmpty())
+            {
+                Toast.makeText(this, "Incomplete fill up", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
 
             val ChildFirstname = sharedPreferences.getString("childFirstname", "Default Firstname")
