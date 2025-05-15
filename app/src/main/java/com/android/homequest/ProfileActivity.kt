@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.Toast
 import com.android.homequest.RC.RetrofitClient
 import com.android.homequest.model.ChildUpdateRequest
 import com.android.homequest.model.ChildUpdateResponse
@@ -108,6 +109,12 @@ class ProfileActivity : Activity() {
                 firstname = et_firstname.text.toString(),
                 lastname = et_lastname.text.toString()
             )
+
+            if(et_firstname.text.isEmpty() || et_lastname.text.isEmpty())
+            {
+                Toast.makeText(this, "Complete the fill up", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             RetrofitClient.instance.updateUser(getID, updateRequest)
                 .enqueue(object : Callback<UpdateUserResponse> {

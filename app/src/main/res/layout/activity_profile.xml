@@ -31,15 +31,17 @@
             android:src="@drawable/img_2" />
 
         <ImageView
-            android:layout_width="300dp"
+            android:layout_width="200dp"
             android:layout_height="100dp"
             android:src="@drawable/img_18"
-            android:layout_marginVertical="12dp"/>
+            android:layout_marginVertical="12dp"
+            android:layout_marginLeft="50dp"/>
 
         <ImageButton
             android:id="@+id/button_edit"
             android:layout_width="40dp"
             android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
             android:background="@null"
             android:layout_marginTop="10dp"
             android:scaleType="centerInside"

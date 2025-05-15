@@ -40,7 +40,7 @@
             android:id="@+id/AddReward"
             android:layout_width="60dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="170dp"
+            android:layout_marginLeft="140dp"
             android:layout_gravity="center_vertical"
             android:background="@null"
             android:scaleType="centerInside"

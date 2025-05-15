@@ -80,6 +80,7 @@ class LoginActivity : Activity() {
             if(email.isNullOrEmpty() || password.isNullOrEmpty())
             {
                 Toast.makeText(this, "Username or password is empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
 //            val sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE)
