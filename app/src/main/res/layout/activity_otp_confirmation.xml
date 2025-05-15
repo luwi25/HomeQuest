@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OTP Verification"
+                android:text="Email Verification"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="@android:color/black"
@@ -64,6 +64,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundtext"
+                    android:paddingLeft="5dp"
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_marginRight="10dp"/>
@@ -74,6 +75,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/roundtext"
                     android:inputType="number"
+                    android:paddingLeft="5dp"
                     android:maxLength="1"
                     android:layout_marginRight="10dp"/>
 
@@ -82,6 +84,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundtext"
+                    android:paddingLeft="5dp"
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_marginRight="10dp"/>
@@ -91,6 +94,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundtext"
+                    android:paddingLeft="5dp"
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_marginRight="10dp"/>
@@ -100,6 +104,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundtext"
+                    android:paddingLeft="5dp"
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_marginRight="10dp"/>
@@ -109,6 +114,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/roundtext"
+                    android:paddingLeft="5dp"
                     android:inputType="number"
                     android:maxLength="1"
                     android:layout_marginRight="10dp"/>

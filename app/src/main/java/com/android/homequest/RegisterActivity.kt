@@ -114,6 +114,16 @@ class RegisterActivity : Activity() {
 
             var role: String = ""
 
+            if(lastname.isEmpty() || firstname.isEmpty() || email.isEmpty() || password.isEmpty() || confirmpassword.isEmpty())
+            {
+                Toast.makeText(this, "Incomplete Registration! Please complete the registration", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(password != confirmpassword)
+            {
+                Toast.makeText(this, "Password and confirm password must be matched!", Toast.LENGTH_SHORT).show()
+            }
+
             if (selectedRole == "Select Role Option")
             {
                 Toast.makeText(this, "Please select an option", Toast.LENGTH_SHORT).show()
@@ -160,6 +170,7 @@ class RegisterActivity : Activity() {
 
                     } else {
                         Log.e("API", "Error: ${response.code()} - ${response.errorBody()?.string()}")
+                        Toast.makeText(this@RegisterActivity, "Email doesn't exit", Toast.LENGTH_SHORT).show()
                     }
                 }
 
